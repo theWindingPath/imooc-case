@@ -41,6 +41,8 @@ body{
 .iconactive{
     color: #c9394a;
 }
+
+
 .header{
     display:flex;
     height: 44px;
@@ -58,7 +60,7 @@ body{
 }
 .header_form input{
     width: 100%;
-    box-sizing: border-box;
+    box-sizing: border-box; 
     height: 28px;
     border-radius: 8px;
     border: none;
@@ -141,7 +143,8 @@ body{
 }
 .title span:nth-child(1) {
     color: #999999;
-    font-weight:  400;
+/*    font-weight:  400; */
+    font-weight: bold;
 }
 .title span:nth-child(2) {
     color: #c9394a;
@@ -160,8 +163,9 @@ body{
 }
 
 .items .item:nth-child(1) .item_left{
-    background: url("http://szimg.mukewang.com/5806de7c00014a3105400300-360-202.jpg") no-repeat top center;
-    background-size: 90% auto;
+    background: url("http://szimg.mukewang.com/5806de7c00014a3105400300-360-202.jpg") no-repeat top center ;
+    background-size: 90% auto; 
+ /*   background-size: 50% auto; */
 }
 .items .item:nth-child(2) .item_left{
     background: url("http://szimg.mukewang.com/583e42fb0001e04f05400300-360-202.jp") no-repeat top center;
@@ -214,5 +218,5 @@ body{
     font-size: .6rem;
 }
 .item_right em{
-    font-style: normal;
+    font-style: normal; 
 }

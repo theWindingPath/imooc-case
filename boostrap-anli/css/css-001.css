@@ -1,0 +1,91 @@
+@charset "utf-8";
+/* CSS Document */
+.banner{
+    width: 100%;
+}
+.banner img{
+    width: 100%;
+    min-height: 200px;
+}
+.pages-title{
+    width: 100%;
+    text-align: center;
+    margin-top: 78px;
+}
+.pages-title h3{
+    font-size: 30px;
+    color: #666666;
+}
+.pages-title p{
+    color: #999999;
+    font-size: 18px;
+    margin-top: 25px;
+}
+.one-pic{
+    margin-top: 122px;
+    text-align: center;
+    margin-bottom: 106px;
+}
+.pages-two{
+    background: #eff4f7;
+    border-top: 1px solid #eeeff0;
+}
+.two-pic li{
+    width: 100%;
+    height: 350px;
+    color: #999999;
+    border: 1px solid #e5e5e5;
+    margin-top: 15px;
+    list-style: none;
+}
+.two-pic li h3{
+    text-align: center;
+    margin-top: 190px;
+    font-size: 20px;
+}
+.two-pic li .btn{
+    margin-top: 26px;
+    width: 35%;
+}
+.two-pic li:hover{
+    color: #fff;
+    border: 1px solid #ef200d;
+}
+.one-li{
+    background: #fff url(../images/index_25.png) no-repeat 50% 20%;
+}
+.one-li:hover{
+    background: #f00 url(../images/index_h_03.png) no-repeat 50% 20%;
+    box-shadow: 0px 0px 10px #ef200d;
+}
+
+
+
+@media (max-width:768px){
+    .pages-title{
+        margin-top: 28px;
+    }
+    .pages-title h3{
+        font-size: 22px;
+    }
+    .pages-title p{
+        font-size: 16px;
+        margin-top: 15px;
+    }
+    .one-pic{
+        margin-top: 22px;
+        margin-bottom: 26px;
+    }
+    .one-pic img{
+        width: 100%;
+    }
+    .two-pic li{
+        height: 200px;
+        background-size: auto 80px;
+        background-position: 10px;
+    }
+    .two-pic li h3{
+        margin-top: 100px;
+    }
+
+}
