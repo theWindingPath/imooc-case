@@ -1,5 +1,5 @@
 /* 搜索 */
-.ui-search{
+.ui-search-003{
     background: url(../img/ui-search.jpg) center no-repeat;
     font-size: 14px;
     color: #fff;
@@ -164,4 +164,75 @@
     display: block;
     line-height: 20px;
     text-align: center;
+}
+
+/* ui-slider 幻灯片组件 */
+.ui-slider{
+    width: 544px;
+    height: 414px;
+    position: relative;
+    overflow: hidden;
+}
+.ui-slider-wrap{
+    /* 横着滚动 */
+    width: 9999px;
+    height: 414px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    /* 有有一点缓慢移动 */
+    transition: all .5s;
+}
+.ui-slider-wrap .item{
+    /* 没有间隙 */
+    display: block;
+    float: left;
+
+    width: 544px;
+    height: 414px;
+
+}
+
+.ui-slider-arrow{
+    width: 544px;
+    height: 40px;
+    position: absolute;
+    margin-top: -20px;
+    top: 50%;
+    /* background-color: orange; */
+}
+.ui-slider-arrow .item{
+    display: block;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 0;
+    background: url(../img/ui-slider-arrow.png) no-repeat;
+}
+.ui-slider-arrow .left{
+    left: 0;
+}
+.ui-slider-arrow .right{
+    right: 0;
+    /* x -40px */
+    background-position: -40px 0;
+}
+.ui-slider-process{
+    width: 544px;
+    height: 12px;
+    text-align: center;
+    /* 漂浮 */
+    position: absolute;
+    left: 0;
+    bottom: 20px;
+}
+.ui-slider-process .item{
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background: url(../img/ui-slider-process.png) no-repeat;
+}
+.ui-slider-process .item_focus,
+.ui-slider-process .item:hover{
+    background-position: -23px 0;
 }

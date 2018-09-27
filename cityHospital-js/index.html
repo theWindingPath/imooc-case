@@ -31,7 +31,7 @@
         <div class="wrap clearfix">
             <a class="logo" href="#"><img src="./img/logo.png"></a>
 
-            <div class="search ui-search">
+            <div class="search ui-search-003">
                 <div class="ui-search-selected">医院</div>
                 <div class="ui-search-selected-list">
                     <a href="#1">科室</a>
@@ -222,29 +222,57 @@
 
     <div id="banner" class="banner">
 
-        <div class="banner-slider"></div>
+        <div class="banner-slider ui-slider">
+
+            <div class="ui-slider-wrap">
+                <a href="#0" class="item"><img src="img/banner_1.jpg" alt="banner-1"></a>
+                <a href="#1" class="item"><img src="img/banner_2.jpg" alt="banner-2"></a>
+                <a href="#2" class="item"><img src="img/banner_3.jpg" alt="banner-3"></a>
+            </div>
+
+            <div class="ui-slider-arrow">
+                <a href="#l" class="item left">&nbsp;</a>
+                <a href="#r" class="item right">&nbsp;</a>
+            </div>
+
+            <div class="ui-slider-process">
+                <a href="#0" class="item item_focus">&nbsp;</a>
+                <a href="#1" class="item">&nbsp;</a>
+                <a href="#2" class="item">&nbsp;</a>
+            </div>
+
+        </div>
+
+
         <div class="banner-search">
+
             <div class="caption">
                 <span class="text">快速预约</span>
             </div>
-            <div class="form">
+
+            <div class="form ui-cascading">
+
                 <div class="line">
-                    <select name="area">
+                    <!-- data-search 调用数据来源  data-where 转入参数 -->
+                    <select name="area" data-search="getDistinctArea" data-where="">
                         <option>医院地区</option>
                     </select>
                 </div>
+
                 <div class="line">
-                    <select name="level">
-                        <option>医院等级</option>
+                    <select name="level" data-search="getLeveByArea" data-where="">
+                        <option>医院等级1</option>
+                        <option>医院等级2</option>
                     </select>
                 </div>
+
                 <div class="line">
-                    <select name="name">
+                    <select name="name" data-search="getNameByAreaAndLevel" data-where="">
                         <option>医院名称</option>
                     </select>
                 </div>
                 <div class="line">
-                    <select name="department">
+                    <select name="department" data-search="getDepartmentArrByHospitalName" data-where="">
                         <option>医院科室</option>
                     </select>
                 </div>
@@ -253,6 +281,7 @@
                 <input type="button" class="button" value="快速查询">
             </div>
         </div>
+
 
         <div class="banner-help">
             <div class="caption">
@@ -405,6 +434,7 @@
     <!-- <a href="#" class="">up</a> -->
     <span class="ui-backTop"></span>
     <script type="text/javascript" src="js/ui.js"></script>
+    <script type="text/javascript" src="js/data.js"></script>
 </body>
 
 </html>
