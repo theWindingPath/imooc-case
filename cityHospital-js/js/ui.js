@@ -169,8 +169,6 @@ $.fn.UiSlider = function () {
         })
         .triggerHandler('auto_move'); // 一进来 自动执行 不需要事件调用
 
-
-
     // 事件 通过点击事件 调用对应函数
     btn_pre.on('click', function () {
         wrap.triggerHandler('move_prev'); // 调用函数名 move_prev  在上面 wrap 定义
@@ -183,7 +181,6 @@ $.fn.UiSlider = function () {
         var index = $(this).index();
         wrap.triggerHandler('move_to', index);
     })
-
 }
 
 
@@ -198,12 +195,48 @@ $.fn.UiCascading = function(){
         var val = $(this).val(); // 当前值拿出来
         var index = selects.index(this); // 当前选中第几个 option下拉选项
 
+        // 触发下一个 select 的更新、根据当前的值
+        var where = $(this).attr("data-where"); // 当前值
+        where = where ? where.split(',') : []; // 如果 where有内容 分开 
+        where.push( $(this).val() );
+        
+        selects.eq(index+1)
+            .attr('data-where',where.join(','))
+            .triggerHandler('reloadOptions');
+
+        // 触发下一个之后的 select 的初始化 （清除不应该有的数据项
+        
+        ui.find('select:gt('+ (index+1) +')').each(function(){  //找到下一层
+            $(this)
+            .attr('data-where', '')  // 清空
+            .triggerHandler('reloadOptions'); // 调用函数
+        }) 
         // debugger // 然后在 下拉选框 选择
     })
     .on('reloadOptions',function(){   //select 下每个 option 都需要重新更新、加载
 
-    })
+        // 当前接口
+        var method = $(this).attr('data-search');
+        // 通过 ajax拿数据 $(this).attr('data-where') 
+        var args = $(this).attr('data-where').split(',');   //将字符串拆开
 
+        var data = AjaxRemoteGetData[ method ].apply( this, args);  // apply 第一个参数为谁去调用这个方法 第二个参数 args 是数组 自动赋值 0 1 2
+
+        var select = $(this); // 指向当前 本身
+
+        select.find('option').remove(); // 清空
+
+        $.each( data , function(i,item){  // 遍历 拿出来的 data
+            // debugger // 使用关键字 arguments 查看需要 参数 传进来
+            var el = $('<option value="'+item+'">'+item+'</option>') // 加东西
+            select.append(el);
+        });
+
+        // debugger
+    })
+    
+    //默认第一个元素
+    selects.eq(0).triggerHandler('reloadOptions');
 }
 
 
