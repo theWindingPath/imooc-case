@@ -171,14 +171,15 @@
     width: 544px;
     height: 414px;
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 .ui-slider-wrap{
     /* 横着滚动 */
     width: 9999px;
     height: 414px;
     position: absolute;
-    left: 0;
+    /* left: 0; */
+    left: -544px;
     right: 0;
     /* 有有一点缓慢移动 */
     transition: all .5s;

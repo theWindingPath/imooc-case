@@ -124,10 +124,11 @@ $.fn.UiSlider = function () {
 
     // 具体操作
     wrap  // 一个变量 定义 多个函数 函数名： move_prev / move_next / move_to 等
-        .on('move_prev', function () {
+        .on('move_prev003', function () {
 
             if (current <= 0) {
                 current = size;
+                // console.log(size);
             }
             current = current - 1;
             // console.log(current);
@@ -171,7 +172,7 @@ $.fn.UiSlider = function () {
 
     // 事件 通过点击事件 调用对应函数
     btn_pre.on('click', function () {
-        wrap.triggerHandler('move_prev'); // 调用函数名 move_prev  在上面 wrap 定义
+        wrap.triggerHandler('move_prev003'); // 调用函数名 move_prev  在上面 wrap 定义
     });
     btn_next.on('click', function () {
         wrap.triggerHandler('move_next');
