@@ -171,7 +171,7 @@
     width: 544px;
     height: 414px;
     position: relative;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 .ui-slider-wrap{
     /* 横着滚动 */

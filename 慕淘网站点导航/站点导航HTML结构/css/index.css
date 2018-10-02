@@ -32,6 +32,8 @@
     position: relative;
 }
 .dropdown-toggle{
+    position: relative;
+    z-index: 2; 
     display: block;
     height: 100%;
     padding: 0 16px 0 12px;
@@ -47,9 +49,11 @@
     vertical-align: middle;
 }
 .dropdown-layer{
-    /* display: none; */
+    display: none;
     position: absolute;
-    top: 44px;
+    /* top: 44px; 将本层向上提 -1px 让上面盖住边框 还要设置层级 z-index 到 drown-toggle*/
+    top: 43px; 
+    z-index: 1;
     background-color: #fff;
     border: 1px solid #cdd0d4;
 }
@@ -74,3 +78,20 @@
     background-color: #f3f5f7;
 }
 
+/* js 样式 和使用 hover*/
+
+/* .dropdown:hover  IE6 只有 a标签有伪类*/
+
+.dropdown-active .dropdown-toggle,
+.dropdown:hover .dropdown-toggle{
+    background-color: #fff;
+    border-color: #cdd0d4;
+}
+.dropdown-active .dropdown-arrow,
+.dropdown:hover .dropdown-arrow{
+    background: url(../image/dropdown-arrow-active.png);
+}
+.dropdown-active .dropdown-layer,
+.dropdown:hover .dropdown-layer{
+    display: block;
+}
