@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>中文模拟计算器-js</title>
+    <link rel="stylesheet" type="text/css" href="lizi.css" >
+</head>
+<body>
+
+    <div id="jisuanqi">
+        <p>
+            <input type="text" class="qian_shuru" value="1" />
+            <span class="fuhao">加</span>
+            <input type="text" class="hou_shuru" value="1" />
+            <span>等于</span>
+            <span class="jieguo_shuchu">2</span>
+        </p>
+        <p>
+            <!-- <input type="button" value="加" onclick="jiafa_hs();"/>
+            <input type="button" value="减" onclick="jianfa_hs();"/>
+            <input type="button" value="乘" onclick="chengfa_hs();"/>
+            <input type="button" value="除" onclick="chufa_hs();"/> -->
+
+            <input type="button" value="加" class="anniu" title="jia"/>
+            <input type="button" value="减" class="anniu" title="jian"/>
+            <input type="button" value="乘" class="anniu" title="cheng"/>
+            <input type="button" value="除" class="anniu" title="chu"/>
+
+            <!-- 添加新方法 -->
+            <input type="button" value="%" class="anniu" title="mod"/>
+
+            <input type="button" value="^" class="anniu" title="power"/>
+        </p>
+    </div>
+    
+
+    <script src="lizi.js"></script>
+</body>
+</html>

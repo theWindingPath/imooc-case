@@ -75,77 +75,16 @@
         //     resultOutput.innerHTML = formerInput.value / laterInput.value; // 前面需要加 + 从 DOM获取来的都是字符串
         // }
 
-        // 第一次改进--将结构和行为分离
-        // 获取元素 所有 DOM元素
-        var calculator = document.querySelector('#calculator');
-        var formerInput = calculator.querySelector('.formerInput');
-        var laterInput = calculator.querySelector('.laterInput');
-        var sign = calculator.querySelector('.sign');
-        var resultOutput = calculator.querySelector('.resultOutput');
-        var btns = calculator.querySelectorAll('.btn');
+        // // 第一次改进--将结构和行为分离
+        // // 获取元素 所有 DOM元素
+        // var calculator = document.querySelector('#calculator');
+        // var formerInput = calculator.querySelector('.formerInput');
+        // var laterInput = calculator.querySelector('.laterInput');
+        // var sign = calculator.querySelector('.sign');
+        // var resultOutput = calculator.querySelector('.resultOutput');
+        // var btns = calculator.querySelectorAll('.btn');
 
-        // 绑定事件
-        //+
-        btns[0].onclick = addHandler; //没有 （）的是函数本体
-        // btns[0].onclick = addHandler(); // 有（）会自动执行
-        //-
-        btns[1].onclick = subtractHandler;
-        //×
-        btns[2].onclick = multiplyHandler;
-        //÷
-        btns[3].onclick = divideHandler;
-
-
-        // 加
-        function addHandler() {
-            sign.innerHTML = '+'; // 修改符号
-            resultOutput.innerHTML = +formerInput.value + +laterInput.value; // 前面需要加 + 从 DOM获取来的都是字符串
-        }
-        // 减
-        function subtractHandler() {
-            sign.innerHTML = '-'; // 修改符号
-            resultOutput.innerHTML = formerInput.value - laterInput.value; // 前面需要加 + 从 DOM获取来的都是字符串
-        }
-        // 乘
-        function multiplyHandler() {
-            sign.innerHTML = '×'; // 修改符号
-            resultOutput.innerHTML = formerInput.value * laterInput.value; // 前面需要加 + 从 DOM获取来的都是字符串
-        }
-        // 除
-        function divideHandler() {
-            sign.innerHTML = '÷'; // 修改符号
-            resultOutput.innerHTML = formerInput.value / laterInput.value; // 前面需要加 + 从 DOM获取来的都是字符串
-        }
-
-        // 第二次改进--使用循环
-        // 获取元素 所有 DOM元素
-        var calculator = document.querySelector('#calculator');
-        var formerInput = calculator.querySelector('.formerInput');
-        var laterInput = calculator.querySelector('.laterInput');
-        var sign = calculator.querySelector('.sign');
-        var resultOutput = calculator.querySelector('.resultOutput');
-        var btns = calculator.querySelectorAll('.btn');
-
-        // 绑定事件
-        for (var i = 0; i < btns.length; i++) {
-            btns[i].onclick = function () { // 写一个匿名函数 在匿名函数里判断
-                // console.log(this.value);
-                switch (this.title) {
-                    case 'add':
-                        addHandler();
-                        break;
-                    case 'subtract':
-                        subtractHandler();
-                        break;
-                    case 'multiply':
-                        multiplyHandler();
-                        break;
-                    case 'divide':
-                        divideHandler();
-                        break;
-                }
-            };
-        }
+        // // 绑定事件
         // //+
         // btns[0].onclick = addHandler; //没有 （）的是函数本体
         // // btns[0].onclick = addHandler(); // 有（）会自动执行
@@ -157,26 +96,87 @@
         // btns[3].onclick = divideHandler;
 
 
-        // 加
-        function addHandler() {
-            sign.innerHTML = '+'; // 修改符号
-            resultOutput.innerHTML = +formerInput.value + +laterInput.value; // 前面需要加 + 从 DOM获取来的都是字符串
-        }
-        // 减
-        function subtractHandler() {
-            sign.innerHTML = '-'; // 修改符号
-            resultOutput.innerHTML = formerInput.value - laterInput.value; // 前面需要加 + 从 DOM获取来的都是字符串
-        }
-        // 乘
-        function multiplyHandler() {
-            sign.innerHTML = '×'; // 修改符号
-            resultOutput.innerHTML = formerInput.value * laterInput.value; // 前面需要加 + 从 DOM获取来的都是字符串
-        }
-        // 除
-        function divideHandler() {
-            sign.innerHTML = '÷'; // 修改符号
-            resultOutput.innerHTML = formerInput.value / laterInput.value; // 前面需要加 + 从 DOM获取来的都是字符串
-        }
+        // // 加
+        // function addHandler() {
+        //     sign.innerHTML = '+'; // 修改符号
+        //     resultOutput.innerHTML = +formerInput.value + +laterInput.value; // 前面需要加 + 从 DOM获取来的都是字符串
+        // }
+        // // 减
+        // function subtractHandler() {
+        //     sign.innerHTML = '-'; // 修改符号
+        //     resultOutput.innerHTML = formerInput.value - laterInput.value; // 前面需要加 + 从 DOM获取来的都是字符串
+        // }
+        // // 乘
+        // function multiplyHandler() {
+        //     sign.innerHTML = '×'; // 修改符号
+        //     resultOutput.innerHTML = formerInput.value * laterInput.value; // 前面需要加 + 从 DOM获取来的都是字符串
+        // }
+        // // 除
+        // function divideHandler() {
+        //     sign.innerHTML = '÷'; // 修改符号
+        //     resultOutput.innerHTML = formerInput.value / laterInput.value; // 前面需要加 + 从 DOM获取来的都是字符串
+        // }
+
+        // // 第二次改进--使用循环
+        // // 获取元素 所有 DOM元素
+        // var calculator = document.querySelector('#calculator');
+        // var formerInput = calculator.querySelector('.formerInput');
+        // var laterInput = calculator.querySelector('.laterInput');
+        // var sign = calculator.querySelector('.sign');
+        // var resultOutput = calculator.querySelector('.resultOutput');
+        // var btns = calculator.querySelectorAll('.btn');
+
+        // // 绑定事件
+        // for (var i = 0; i < btns.length; i++) {
+        //     btns[i].onclick = function () { // 写一个匿名函数 在匿名函数里判断
+        //         // console.log(this.value);
+        //         switch (this.title) {
+        //             case 'add':
+        //                 addHandler();
+        //                 break;
+        //             case 'subtract':
+        //                 subtractHandler();
+        //                 break;
+        //             case 'multiply':
+        //                 multiplyHandler();
+        //                 break;
+        //             case 'divide':
+        //                 divideHandler();
+        //                 break;
+        //         }
+        //     };
+        // }
+        // // //+
+        // // btns[0].onclick = addHandler; //没有 （）的是函数本体
+        // // // btns[0].onclick = addHandler(); // 有（）会自动执行
+        // // //-
+        // // btns[1].onclick = subtractHandler;
+        // // //×
+        // // btns[2].onclick = multiplyHandler;
+        // // //÷
+        // // btns[3].onclick = divideHandler;
+
+
+        // // 加
+        // function addHandler() {
+        //     sign.innerHTML = '+'; // 修改符号
+        //     resultOutput.innerHTML = +formerInput.value + +laterInput.value; // 前面需要加 + 从 DOM获取来的都是字符串
+        // }
+        // // 减
+        // function subtractHandler() {
+        //     sign.innerHTML = '-'; // 修改符号
+        //     resultOutput.innerHTML = formerInput.value - laterInput.value; // 前面需要加 + 从 DOM获取来的都是字符串
+        // }
+        // // 乘
+        // function multiplyHandler() {
+        //     sign.innerHTML = '×'; // 修改符号
+        //     resultOutput.innerHTML = formerInput.value * laterInput.value; // 前面需要加 + 从 DOM获取来的都是字符串
+        // }
+        // // 除
+        // function divideHandler() {
+        //     sign.innerHTML = '÷'; // 修改符号
+        //     resultOutput.innerHTML = formerInput.value / laterInput.value; // 前面需要加 + 从 DOM获取来的都是字符串
+        // }
 
         // // 第三次改进--提取函数
         // // 获取元素 所有 DOM元素
@@ -187,7 +187,7 @@
         // var resultOutput = calculator.querySelector('.resultOutput');
         // var btns = calculator.querySelectorAll('.btn');
 
-        // // 绑定事件
+        // // 绑定事件 each函数执行
         // each003(btns, function (index, elem) {
         //     elem.onclick = function () { // 写一个匿名函数 在匿名函数里判断
         //         // console.log(this.value);
@@ -208,7 +208,7 @@
         //     };
         // });
 
-        // // 遍历 array 对应上面 each 里 的 btns 
+        // // 遍历 array 对应上面 each 里 的 btns  each函数定义
         // function each003(array, fn003) { // fn003 对应上面 each 里的 function(index, elem) 匿名函数
         //     for (var i = 0; i < array.length; i++) {  // 每个 btns 都要绑定 onclick事件
         //         // array[i] 对应上面 each 里的匿名函数 里的 elem
@@ -359,89 +359,89 @@
         //     outputResult(operation.divide(calculatorElem.formerInput.value, calculatorElem.laterInput.value));
         // }
 
-        // // 第五次改进--OCP 开放--封闭原则
-        // // 获取元素 所有 DOM元素
-        // var wrapElem = document.querySelector('#calculator');
-        // var calculatorElem = { // 创建一个对象 管理变量
-        //     formerInput: wrapElem.querySelector('.formerInput'),
-        //     laterInput: wrapElem.querySelector('.laterInput'),
-        //     sign: wrapElem.querySelector('.sign'),
-        //     resultOutput: wrapElem.querySelector('.resultOutput'),
-        //     btns: wrapElem.querySelectorAll('.btn')
-        // };
-        // // console.log(calculatorElem);
+        // 第五次改进--OCP 开放--封闭原则
+        // 获取元素 所有 DOM元素
+        var wrapElem = document.querySelector('#calculator');
+        var calculatorElem = { // 创建一个对象 管理变量
+            formerInput: wrapElem.querySelector('.formerInput'),
+            laterInput: wrapElem.querySelector('.laterInput'),
+            sign: wrapElem.querySelector('.sign'),
+            resultOutput: wrapElem.querySelector('.resultOutput'),
+            btns: wrapElem.querySelectorAll('.btn')
+        };
+        // console.log(calculatorElem);
 
-        // // 绑定事件
-        // each(calculatorElem.btns, function (index, elem) {
-        //     elem.onclick = function () { // 写一个匿名函数 在匿名函数里判断
-        //         // console.log(this.value);
-        //         updateSign(this.value); // 将符号 + - × ÷ 通过 value 传进来
-        //         //调用 operate方法 代替 switch
-        //         outputResult(operate(this.title, calculatorElem.formerInput.value, calculatorElem.laterInput.value));
-        //     }
-        // });
+        // 绑定事件
+        each(calculatorElem.btns, function (index, elem) {
+            elem.onclick = function () { // 写一个匿名函数 在匿名函数里判断
+                // console.log(this.value);
+                updateSign(this.value); // 将符号 + - × ÷ 通过 value 传进来
+                //调用 operate方法 代替 switch
+                outputResult(operate(this.title, calculatorElem.formerInput.value, calculatorElem.laterInput.value));
+            }
+        });
 
-        // // 遍历
-        // function each(array, fn) {
-        //     for (var i = 0; i < array.length; i++) {
-        //         fn(i, array[i]); // 回调函数 调上面的 each
-        //     }
-        // }
+        // 遍历
+        function each(array, fn) {
+            for (var i = 0; i < array.length; i++) {
+                fn(i, array[i]); // 回调函数 调上面的 each
+            }
+        }
 
-        // // 运算函数 代替switch
-        // function operate(name, num1, num2) {
-        //     //手动抛出错误 判断传入 name 是否存在 为真？
-        //     if (!operation[name]) throw new Error('不存在名为' + name + '的运算方法');
-        //     // 调用 穿起来 name对应 operation 方法 变量通过中括号调用 没法用 . 调用
-        //     return operation[name](num1, num2);
-        // }
+        // 运算函数 代替switch
+        function operate(name, num1, num2) {
+            //手动抛出错误 判断传入 name 是否存在 为真？
+            if (!operation[name]) throw new Error('不存在名为' + name + '的运算方法');
+            // 调用 穿起来 name对应 operation 方法 变量通过中括号调用 没法用 . 调用
+            return operation[name](num1, num2);
+        }
 
-        // // 更新符号
-        // function updateSign(symbol) {
-        //     calculatorElem.sign.innerHTML = symbol;
-        // }
+        // 更新符号
+        function updateSign(symbol) {
+            calculatorElem.sign.innerHTML = symbol;
+        }
 
-        // var operation = { // 创建对象管理函数 方法
-        //     add: function (num1, num2) {
-        //         return +num1 + +num2;
-        //     },
-        //     subtract: function (num1, num2) {
-        //         return num1 - num2;
-        //     },
-        //     multiply: function (num1, num2) {
-        //         return num1 * num2;
-        //     },
-        //     divide: function (num1, num2) {
-        //         return num1 / num2;
-        //     },
-        //     // // 增加新功能 mod
-        //     // mod: function (num1, num2) {
-        //     //     return num1 % num2;
-        //     // },
-        //     // 提供方法 给外部添加新方法
-        //     addOperation:function(name, fn) {
-        //         // 判断传进来方法是否已存在
-        //         if(!this[name]) {
-        //             this[name] = fn;
-        //         }
-        //         return this; // 链式调用
-        //     }
-        // };
+        var operation = { // 创建对象管理函数 方法
+            add: function (num1, num2) {
+                return +num1 + +num2;
+            },
+            subtract: function (num1, num2) {
+                return num1 - num2;
+            },
+            multiply: function (num1, num2) {
+                return num1 * num2;
+            },
+            divide: function (num1, num2) {
+                return num1 / num2;
+            },
+            // // 增加新功能 mod
+            // mod: function (num1, num2) {
+            //     return num1 % num2;
+            // },
+            // 提供方法 给外部添加新方法
+            addOperation:function(name, fn) {
+                // 判断传进来方法是否已存在
+                if(!this[name]) {
+                    this[name] = fn;
+                }
+                return this; // 链式调用
+            }
+        };
 
-        // // 在外部添加新方法
-        // operation.addOperation('mod', function(num1, num2){
-        //     return num1 % num2;
-        // }).addOperation('power',function(base, power){ //链式操作
-        //   return Math.pow(base, power);  //调用幂函数 底数 n次幂
-        // });
+        // 在外部添加新方法
+        operation.addOperation('mod', function(num1, num2){
+            return num1 % num2;
+        }).addOperation('power',function(base, power){ //链式操作
+          return Math.pow(base, power);  //调用幂函数 底数 n次幂
+        });
 
-        // // 输出结果
-        // function outputResult(result) {
-        //     calculatorElem.resultOutput.innerHTML = result;
-        // }
+        // 输出结果
+        function outputResult(result) {
+            calculatorElem.resultOutput.innerHTML = result;
+        }
 
         // // 第六次改进--模块化
-        // (function () { //匿名函数 在定义同时执行 内部代码变成局部变量
+        // (function () { //匿名函数 ()()在定义同时执行 内部代码变成局部变量 
         //     // 获取元素 所有 DOM元素
         //     var wrapElem = document.querySelector('#calculator');
         //     var calculatorElem = { // 创建一个对象 管理变量

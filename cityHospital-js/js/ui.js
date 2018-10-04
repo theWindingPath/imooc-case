@@ -38,6 +38,7 @@ $.fn.UiTab = function (header, content, focus_prefix) {
 
     tabs.on('click', function () {
         var index = $(this).index();
+        // console.log(index);
         // debugger
         //点击 医院 和 科室 切换（清除、添加）颜色
         tabs.removeClass(focus_prefix + 'item_focus').eq(index).addClass(focus_prefix + 'item_focus');
