@@ -359,197 +359,197 @@
         //     outputResult(operation.divide(calculatorElem.formerInput.value, calculatorElem.laterInput.value));
         // }
 
-        // 第五次改进--OCP 开放--封闭原则
-        // 获取元素 所有 DOM元素
-        var wrapElem = document.querySelector('#calculator');
-        var calculatorElem = { // 创建一个对象 管理变量
-            formerInput: wrapElem.querySelector('.formerInput'),
-            laterInput: wrapElem.querySelector('.laterInput'),
-            sign: wrapElem.querySelector('.sign'),
-            resultOutput: wrapElem.querySelector('.resultOutput'),
-            btns: wrapElem.querySelectorAll('.btn')
-        };
-        // console.log(calculatorElem);
+        // // 第五次改进--OCP 开放--封闭原则
+        // // 获取元素 所有 DOM元素
+        // var wrapElem = document.querySelector('#calculator');
+        // var calculatorElem = { // 创建一个对象 管理变量
+        //     formerInput: wrapElem.querySelector('.formerInput'),
+        //     laterInput: wrapElem.querySelector('.laterInput'),
+        //     sign: wrapElem.querySelector('.sign'),
+        //     resultOutput: wrapElem.querySelector('.resultOutput'),
+        //     btns: wrapElem.querySelectorAll('.btn')
+        // };
+        // // console.log(calculatorElem);
 
-        // 绑定事件
-        each(calculatorElem.btns, function (index, elem) {
-            elem.onclick = function () { // 写一个匿名函数 在匿名函数里判断
-                // console.log(this.value);
-                updateSign(this.value); // 将符号 + - × ÷ 通过 value 传进来
-                //调用 operate方法 代替 switch
-                outputResult(operate(this.title, calculatorElem.formerInput.value, calculatorElem.laterInput.value));
-            }
-        });
+        // // 绑定事件
+        // each(calculatorElem.btns, function (index, elem) {
+        //     elem.onclick = function () { // 写一个匿名函数 在匿名函数里判断
+        //         // console.log(this.value);
+        //         updateSign(this.value); // 将符号 + - × ÷ 通过 value 传进来
+        //         //调用 operate方法 代替 switch
+        //         outputResult(operate(this.title, calculatorElem.formerInput.value, calculatorElem.laterInput.value));
+        //     }
+        // });
 
-        // 遍历
-        function each(array, fn) {
-            for (var i = 0; i < array.length; i++) {
-                fn(i, array[i]); // 回调函数 调上面的 each
-            }
-        }
+        // // 遍历
+        // function each(array, fn) {
+        //     for (var i = 0; i < array.length; i++) {
+        //         fn(i, array[i]); // 回调函数 调上面的 each
+        //     }
+        // }
 
-        // 运算函数 代替switch
-        function operate(name, num1, num2) {
-            //手动抛出错误 判断传入 name 是否存在 为真？
-            if (!operation[name]) throw new Error('不存在名为' + name + '的运算方法');
-            // 调用 穿起来 name对应 operation 方法 变量通过中括号调用 没法用 . 调用
-            return operation[name](num1, num2);
-        }
+        // // 运算函数 代替switch
+        // function operate(name, num1, num2) {
+        //     //手动抛出错误 判断传入 name 是否存在 为真？
+        //     if (!operation[name]) throw new Error('不存在名为' + name + '的运算方法');
+        //     // 调用 穿起来 name对应 operation 方法 变量通过中括号调用 没法用 . 调用
+        //     return operation[name](num1, num2);
+        // }
 
-        // 更新符号
-        function updateSign(symbol) {
-            calculatorElem.sign.innerHTML = symbol;
-        }
+        // // 更新符号
+        // function updateSign(symbol) {
+        //     calculatorElem.sign.innerHTML = symbol;
+        // }
 
-        var operation = { // 创建对象管理函数 方法
-            add: function (num1, num2) {
-                return +num1 + +num2;
-            },
-            subtract: function (num1, num2) {
-                return num1 - num2;
-            },
-            multiply: function (num1, num2) {
-                return num1 * num2;
-            },
-            divide: function (num1, num2) {
-                return num1 / num2;
-            },
-            // // 增加新功能 mod
-            // mod: function (num1, num2) {
-            //     return num1 % num2;
-            // },
-            // 提供方法 给外部添加新方法
-            addOperation:function(name, fn) {
-                // 判断传进来方法是否已存在
-                if(!this[name]) {
-                    this[name] = fn;
+        // var operation = { // 创建对象管理函数 方法
+        //     add: function (num1, num2) {
+        //         return +num1 + +num2;
+        //     },
+        //     subtract: function (num1, num2) {
+        //         return num1 - num2;
+        //     },
+        //     multiply: function (num1, num2) {
+        //         return num1 * num2;
+        //     },
+        //     divide: function (num1, num2) {
+        //         return num1 / num2;
+        //     },
+        //     // // 增加新功能 mod
+        //     // mod: function (num1, num2) {
+        //     //     return num1 % num2;
+        //     // },
+        //     // 提供方法 给外部添加新方法
+        //     addOperation:function(name, fn) {
+        //         // 判断传进来方法是否已存在
+        //         if(!this[name]) {
+        //             this[name] = fn;
+        //         }
+        //         return this; // 链式调用
+        //     }
+        // };
+
+        // // 在外部添加新方法
+        // operation.addOperation('mod', function(num1, num2){
+        //     return num1 % num2;
+        // }).addOperation('power',function(base, power){ //链式操作
+        //   return Math.pow(base, power);  //调用幂函数 底数 n次幂
+        // });
+
+        // // 输出结果
+        // function outputResult(result) {
+        //     calculatorElem.resultOutput.innerHTML = result;
+        // }
+
+        // 第六次改进--模块化
+        (function () { //匿名函数 ()()在定义同时执行 内部代码变成局部变量 
+            // 获取元素 所有 DOM元素
+            var wrapElem = document.querySelector('#calculator');
+            var calculatorElem = { // 创建一个对象 管理变量
+                formerInput: wrapElem.querySelector('.formerInput'),
+                laterInput: wrapElem.querySelector('.laterInput'),
+                sign: wrapElem.querySelector('.sign'),
+                resultOutput: wrapElem.querySelector('.resultOutput'),
+                btns: wrapElem.querySelectorAll('.btn')
+            };
+            // console.log(calculatorElem);
+
+            // 绑定事件
+            each(calculatorElem.btns, function (index, elem) {
+                elem.onclick = function () { // 写一个匿名函数 在匿名函数里判断
+                    // console.log(this.value);
+                    updateSign(this.value); // 将符号 + - × ÷ 通过 value 传进来
+                    //调用 operate方法 代替 switch
+                    outputResult(operate(this.title, calculatorElem.formerInput.value, calculatorElem.laterInput
+                        .value));
                 }
-                return this; // 链式调用
+            });
+
+            // 遍历 绑定事件 循环
+            function each(array, fn) {
+                for (var i = 0; i < array.length; i++) {
+                    fn(i, array[i]); // 回调函数 调上面的 each
+                }
             }
-        };
 
-        // 在外部添加新方法
-        operation.addOperation('mod', function(num1, num2){
-            return num1 % num2;
-        }).addOperation('power',function(base, power){ //链式操作
-          return Math.pow(base, power);  //调用幂函数 底数 n次幂
-        });
+            // 运算 封装成 匿名函数 自执行
+            var operate = (function () {  //定义变量 接收返回值 暴露出的接口
 
-        // 输出结果
-        function outputResult(result) {
-            calculatorElem.resultOutput.innerHTML = result;
-        }
+                var operation = { // 创建对象管理函数 方法
+                    add: function (num1, num2) {
+                        return +num1 + +num2;
+                    },
+                    subtract: function (num1, num2) {
+                        return num1 - num2;
+                    },
+                    multiply: function (num1, num2) {
+                        return num1 * num2;
+                    },
+                    divide: function (num1, num2) {
+                        return num1 / num2;
+                    },
+                    // // 增加新功能 mod
+                    // mod: function (num1, num2) {
+                    //     return num1 % num2;
+                    // },
+                    // 提供方法 给外部添加新方法
+                    addOperation: function (name, fn) {
+                        // 判断传进来方法是否已存在
+                        if (!operation[name]) { //将this 改为指向 operation 下方法 2、谁调用 this 会指向谁
+                            operation[name] = fn;
+                        }
+                        return operation; // 链式调用
+                    }
+                };
 
-        // // 第六次改进--模块化
-        // (function () { //匿名函数 ()()在定义同时执行 内部代码变成局部变量 
-        //     // 获取元素 所有 DOM元素
-        //     var wrapElem = document.querySelector('#calculator');
-        //     var calculatorElem = { // 创建一个对象 管理变量
-        //         formerInput: wrapElem.querySelector('.formerInput'),
-        //         laterInput: wrapElem.querySelector('.laterInput'),
-        //         sign: wrapElem.querySelector('.sign'),
-        //         resultOutput: wrapElem.querySelector('.resultOutput'),
-        //         btns: wrapElem.querySelectorAll('.btn')
-        //     };
-        //     // console.log(calculatorElem);
+                // function operate(name, num1, num2) {
+                //     //手动抛出错误 判断传入 name 是否存在 为真？
+                //     if (!operation[name]) throw new Error('不存在名为' + name + '的运算方法');
+                //     // 调用 穿起来 name对应 operation 方法 变量通过中括号调用 没法用 . 调用
+                //     return operation[name](num1, num2);
+                // }
+                function operate(name) {
+                    //手动抛出错误 判断传入 name 是否存在 为真？
+                    if (!operation[name]) throw new Error('不存在名为' + name + '的运算方法');
+                    // 调用 穿起来 name对应 operation 方法 变量通过中括号调用 没法用 . 调用
+                    // console.log([].slice.call(arguments, 1, arguments.length)); // slice 截断类数组第一个值 call 第一个参数传入arguments 类数组 从1 截到.lenght 0截走
+                    // console.log(arguments);
+                    return operation[name].apply(operation, [].slice.call(arguments, 1, arguments.length)); //agrs第一个元素是 name 
+                }
+                operate.addOperation = operation.addOperation; //operate调用 addO函数 相当于 operation 调用
 
-        //     // 绑定事件
-        //     each(calculatorElem.btns, function (index, elem) {
-        //         elem.onclick = function () { // 写一个匿名函数 在匿名函数里判断
-        //             // console.log(this.value);
-        //             updateSign(this.value); // 将符号 + - × ÷ 通过 value 传进来
-        //             //调用 operate方法 代替 switch
-        //             outputResult(operate(this.title, calculatorElem.formerInput.value, calculatorElem.laterInput
-        //                 .value));
-        //         }
-        //     });
+                return operate; // 将 operate返回
 
-        //     // 遍历 绑定事件 循环
-        //     function each(array, fn) {
-        //         for (var i = 0; i < array.length; i++) {
-        //             fn(i, array[i]); // 回调函数 调上面的 each
-        //         }
-        //     }
+                // return function (name, num1, num2) {  // 将匿名函数 返回
+                //     //手动抛出错误 判断传入 name 是否存在 为真？
+                //     if (!operation[name]) throw new Error('不存在名为' + name + '的运算方法');
+                //     // 调用 穿起来 name对应 operation 方法 变量通过中括号调用 没法用 . 调用
+                //     return operation[name](num1, num2);
+                // }; 
 
-        //     // 运算 封装成 匿名函数 自执行
-        //     var operate = (function () {  //定义变量 接收返回值 暴露出的接口
+            })();
 
-        //         var operation = { // 创建对象管理函数 方法
-        //             add: function (num1, num2) {
-        //                 return +num1 + +num2;
-        //             },
-        //             subtract: function (num1, num2) {
-        //                 return num1 - num2;
-        //             },
-        //             multiply: function (num1, num2) {
-        //                 return num1 * num2;
-        //             },
-        //             divide: function (num1, num2) {
-        //                 return num1 / num2;
-        //             },
-        //             // // 增加新功能 mod
-        //             // mod: function (num1, num2) {
-        //             //     return num1 % num2;
-        //             // },
-        //             // 提供方法 给外部添加新方法
-        //             addOperation: function (name, fn) {
-        //                 // 判断传进来方法是否已存在
-        //                 if (!operation[name]) { //将this 改为指向 operation 下方法 2、谁调用 this 会指向谁
-        //                     operation[name] = fn;
-        //                 }
-        //                 return operation; // 链式调用
-        //             }
-        //         };
+            // 更新符号
+            function updateSign(symbol) {
+                calculatorElem.sign.innerHTML = symbol;
+            }
 
-        //         // function operate(name, num1, num2) {
-        //         //     //手动抛出错误 判断传入 name 是否存在 为真？
-        //         //     if (!operation[name]) throw new Error('不存在名为' + name + '的运算方法');
-        //         //     // 调用 穿起来 name对应 operation 方法 变量通过中括号调用 没法用 . 调用
-        //         //     return operation[name](num1, num2);
-        //         // }
-        //         function operate(name) {
-        //             //手动抛出错误 判断传入 name 是否存在 为真？
-        //             if (!operation[name]) throw new Error('不存在名为' + name + '的运算方法');
-        //             // 调用 穿起来 name对应 operation 方法 变量通过中括号调用 没法用 . 调用
-        //             // console.log([].slice.call(arguments, 1, arguments.length)); // slice 截断类数组第一个值 call 第一个参数传入arguments 类数组 从1 截到.lenght 0截走
-        //             // console.log(arguments);
-        //             return operation[name].apply(operation, [].slice.call(arguments, 1, arguments.length)); //agrs第一个元素是 name 
-        //         }
-        //         operate.addOperation = operation.addOperation; //operate调用 addO函数 相当于 operation 调用
+            // 在外部添加新方法
+            operate.addOperation('mod', function (num1, num2) { //相当于 operation 调用
+                return num1 % num2;
+            }).addOperation('power', function (base, power) { //链式操作
+                return Math.pow(base, power); //调用幂函数 底数 n次幂
+            }).addOperation('invert',function(num){ // 参数只有一个值  //加个求倒数方法 2 的倒数 1/2 
+              return 1/num;
+            });
 
-        //         return operate; // 将 operate返回
+            // 输出结果
+            function outputResult(result) {
+                calculatorElem.resultOutput.innerHTML = result;
+            }
 
-        //         // return function (name, num1, num2) {  // 将匿名函数 返回
-        //         //     //手动抛出错误 判断传入 name 是否存在 为真？
-        //         //     if (!operation[name]) throw new Error('不存在名为' + name + '的运算方法');
-        //         //     // 调用 穿起来 name对应 operation 方法 变量通过中括号调用 没法用 . 调用
-        //         //     return operation[name](num1, num2);
-        //         // }; 
+        })()
 
-        //     })();
-
-        //     // 更新符号
-        //     function updateSign(symbol) {
-        //         calculatorElem.sign.innerHTML = symbol;
-        //     }
-
-        //     // 在外部添加新方法
-        //     operate.addOperation('mod', function (num1, num2) { //相当于 operation 调用
-        //         return num1 % num2;
-        //     }).addOperation('power', function (base, power) { //链式操作
-        //         return Math.pow(base, power); //调用幂函数 底数 n次幂
-        //     }).addOperation('invert',function(num){ // 参数只有一个值  //加个求倒数方法 2 的倒数 1/2 
-        //       return 1/num;
-        //     });
-
-        //     // 输出结果
-        //     function outputResult(result) {
-        //         calculatorElem.resultOutput.innerHTML = result;
-        //     }
-
-        // })()
-
-        // // call(); //执行函数 命名函数 先定义 后执行
+        // call(); //执行函数 命名函数 先定义 后执行
     </script>
 
 </body>

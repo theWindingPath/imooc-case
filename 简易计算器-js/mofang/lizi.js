@@ -311,96 +311,196 @@
 //     shuchu_jieguo_hs(suansu_hanshu_dx.chu_hs(jisuanqi_Elem.qian_shuru_bl.value, jisuanqi_Elem.hou_shuru_bl.value));
 // }
 
-// 第五次改进--OCP 开放--封闭原则
-//获取 DOM元素 创建对象 管理变量
-var wrap_yuansu = document.querySelector('#jisuanqi');
-var jisuanqi_Elem = {
-    qian_shuru_bl: wrap_yuansu.querySelector('.qian_shuru'),
-    hou_shuru_bl: wrap_yuansu.querySelector('.hou_shuru'),
-    fuhao_bl: wrap_yuansu.querySelector('.fuhao'),
-    jieguo_shuchu_bl: wrap_yuansu.querySelector('.jieguo_shuchu'),
-    anniu_bl: wrap_yuansu.querySelectorAll('.anniu')
-};
-// console.log(jisuanqi_Elem.anniu_bl);
+// // 第五次改进--OCP 开放--封闭原则
+// //获取 DOM元素 创建对象 管理变量
+// var wrap_yuansu = document.querySelector('#jisuanqi');
+// var jisuanqi_Elem = {
+//     qian_shuru_bl: wrap_yuansu.querySelector('.qian_shuru'),
+//     hou_shuru_bl: wrap_yuansu.querySelector('.hou_shuru'),
+//     fuhao_bl: wrap_yuansu.querySelector('.fuhao'),
+//     jieguo_shuchu_bl: wrap_yuansu.querySelector('.jieguo_shuchu'),
+//     anniu_bl: wrap_yuansu.querySelectorAll('.anniu')
+// };
+// // console.log(jisuanqi_Elem.anniu_bl);
 
-// 绑定事件 each函数
-bianli_bangding_hs(jisuanqi_Elem.anniu_bl, function (xiaobiao_xingcan, yuansu_xingcan) {
-    yuansu_xingcan.onclick = function () {
-        // 更新符号函数
-        genxin_fuhao_hs(this.value);
-        shuchu_jieguo_hs(chaozuo_hs(this.title, jisuanqi_Elem.qian_shuru_bl.value, jisuanqi_Elem.hou_shuru_bl.value));
-        //         // 添加新方法 mod
-        //     case 'mod':
-        //         modfa_hs();
-        //         break;
-        // }
-    }
-});
+// // 绑定事件 each函数
+// bianli_bangding_hs(jisuanqi_Elem.anniu_bl, function (xiaobiao_xingcan, yuansu_xingcan) {
+//     yuansu_xingcan.onclick = function () {
+//         // 更新符号函数
+//         genxin_fuhao_hs(this.value);
+//         shuchu_jieguo_hs(chaozuo_hs(this.title, jisuanqi_Elem.qian_shuru_bl.value, jisuanqi_Elem.hou_shuru_bl.value));
+//         //         // 添加新方法 mod
+//         //     case 'mod':
+//         //         modfa_hs();
+//         //         break;
+//         // }
+//     }
+// });
 
-function bianli_bangding_hs(shuzu_xingcan, hanshu_xingcan) {
-    for (var i = 0; i < shuzu_xingcan.length; i++) {
-        hanshu_xingcan(i, shuzu_xingcan[i]);
-    }
-}
-
-// 更新符号函数
-function genxin_fuhao_hs(fuhao_xingcan) {
-    jisuanqi_Elem.fuhao_bl.innerHTML = fuhao_xingcan;
-}
-
-// 运算函数 代替switch 
-function chaozuo_hs(hanshuming_xingcan, shuzi_1, shuzi_2) {
-    // 先判断传入 运算函数名 如 add 是否存在,如果 为假 抛出错误
-    if (!suansu_hanshu_dx[hanshuming_xingcan]) throw new Error('不存在名为' + hanshuming_xingcan + '的运算方法');
-    return suansu_hanshu_dx[hanshuming_xingcan](shuzi_1, shuzi_2); //调用下面方法 
-}
-
-// 创建对象 管理函数
-var suansu_hanshu_dx = {
-    // 加法函数
-    jia: function (shuzi_1, shuzi_2) {
-        return +shuzi_1 + +shuzi_2;
-    },
-    // 减法方法
-    jian: function (shuzi_1, shuzi_2) {
-        return shuzi_1 - shuzi_2;
-    },
-    // 乘法方法
-    cheng: function (shuzi_1, shuzi_2) {
-        return shuzi_1 * shuzi_2;
-    },
-    // 除法方法
-    chu: function (shuzi_1, shuzi_2) {
-        return shuzi_1 / shuzi_2;
-    },
-
-    // mod法方法
-    mod: function (shuzi_1, shuzi_2) {
-        return shuzi_1 % shuzi_2;
-    },
-
-    // 提供方法 给外部添加新运算方法
-    tianjia_fangfa_hs: function(fangfaming_xingcan, hanshuming_xingcan) {
-        // 判断方法是否已经存在 如果不存在 则指向这个新方法
-        if(!this[fangfaming_xingcan]) {
-            this[fangfaming_xingcan] = hanshuming_xingcan;
-        }
-        return this; // 链式调用
-    }
-};
-
-// 在外部添加新方法
-suansu_hanshu_dx.tianjia_fangfa_hs('power', function(shuzi_1, shuzi_2){
-    return Math.pow(shuzi_1, shuzi_2);
-});
-
-// 输出结果函数
-function shuchu_jieguo_hs(jieguo_xingcan) {
-    jisuanqi_Elem.jieguo_shuchu_bl.innerHTML = jieguo_xingcan;
-}
-
-// //mod法
-// function modfa_hs() {
-//     genxin_fuhao_hs('%');
-//     shuchu_jieguo_hs(suansu_hanshu_dx.mod_hs(jisuanqi_Elem.qian_shuru_bl.value, jisuanqi_Elem.hou_shuru_bl.value));
+// function bianli_bangding_hs(shuzu_xingcan, hanshu_xingcan) {
+//     for (var i = 0; i < shuzu_xingcan.length; i++) {
+//         hanshu_xingcan(i, shuzu_xingcan[i]);
+//     }
 // }
+
+// // 更新符号函数
+// function genxin_fuhao_hs(fuhao_xingcan) {
+//     jisuanqi_Elem.fuhao_bl.innerHTML = fuhao_xingcan;
+// }
+
+// // 运算函数 代替switch 
+// function chaozuo_hs(hanshuming_xingcan, shuzi_1, shuzi_2) {
+//     // 先判断传入 运算函数名 如 add 是否存在,如果 为假 抛出错误
+//     if (!suansu_hanshu_dx[hanshuming_xingcan]) throw new Error('不存在名为' + hanshuming_xingcan + '的运算方法');
+//     return suansu_hanshu_dx[hanshuming_xingcan](shuzi_1, shuzi_2); //调用下面方法 
+// }
+
+// // 创建对象 管理函数
+// var suansu_hanshu_dx = {
+//     // 加法函数
+//     jia: function (shuzi_1, shuzi_2) {
+//         return +shuzi_1 + +shuzi_2;
+//     },
+//     // 减法方法
+//     jian: function (shuzi_1, shuzi_2) {
+//         return shuzi_1 - shuzi_2;
+//     },
+//     // 乘法方法
+//     cheng: function (shuzi_1, shuzi_2) {
+//         return shuzi_1 * shuzi_2;
+//     },
+//     // 除法方法
+//     chu: function (shuzi_1, shuzi_2) {
+//         return shuzi_1 / shuzi_2;
+//     },
+
+//     // mod法方法
+//     mod: function (shuzi_1, shuzi_2) {
+//         return shuzi_1 % shuzi_2;
+//     },
+
+//     // 提供方法 给外部添加新运算方法
+//     tianjia_fangfa_hs: function(fangfaming_xingcan, hanshuming_xingcan) {
+//         // 判断方法是否已经存在 如果不存在 则指向这个新方法
+//         if(!this[fangfaming_xingcan]) {
+//             this[fangfaming_xingcan] = hanshuming_xingcan;
+//         }
+//         return this; // 链式调用
+//     }
+// };
+
+// // 在外部添加新方法
+// suansu_hanshu_dx.tianjia_fangfa_hs('power', function(shuzi_1, shuzi_2){
+//     return Math.pow(shuzi_1, shuzi_2);
+// });
+
+// // 输出结果函数
+// function shuchu_jieguo_hs(jieguo_xingcan) {
+//     jisuanqi_Elem.jieguo_shuchu_bl.innerHTML = jieguo_xingcan;
+// }
+
+// // //mod法
+// // function modfa_hs() {
+// //     genxin_fuhao_hs('%');
+// //     shuchu_jieguo_hs(suansu_hanshu_dx.mod_hs(jisuanqi_Elem.qian_shuru_bl.value, jisuanqi_Elem.hou_shuru_bl.value));
+// // }
+
+// 第六次改进--模块化
+(function () {
+    //获取 DOM元素 创建对象 管理变量
+    var wrap_yuansu = document.querySelector('#jisuanqi');
+    var jisuanqi_Elem = {
+        qian_shuru_bl: wrap_yuansu.querySelector('.qian_shuru'),
+        hou_shuru_bl: wrap_yuansu.querySelector('.hou_shuru'),
+        fuhao_bl: wrap_yuansu.querySelector('.fuhao'),
+        jieguo_shuchu_bl: wrap_yuansu.querySelector('.jieguo_shuchu'),
+        anniu_bl: wrap_yuansu.querySelectorAll('.anniu')
+    };
+    // console.log(jisuanqi_Elem.anniu_bl);
+
+    // 绑定事件 each函数
+    bianli_bangding_hs(jisuanqi_Elem.anniu_bl, function (xiaobiao_xingcan, yuansu_xingcan) {
+        yuansu_xingcan.onclick = function () {
+            // 更新符号函数
+            genxin_fuhao_hs(this.value);
+            shuchu_jieguo_hs(chaozuo_hs(this.title, jisuanqi_Elem.qian_shuru_bl.value, jisuanqi_Elem.hou_shuru_bl.value));
+            //         // 添加新方法 mod
+            //     case 'mod':
+            //         modfa_hs();
+            //         break;
+            // }
+        }
+    });
+
+    function bianli_bangding_hs(shuzu_xingcan, hanshu_xingcan) {
+        for (var i = 0; i < shuzu_xingcan.length; i++) {
+            hanshu_xingcan(i, shuzu_xingcan[i]);
+        }
+    }
+
+    // 更新符号函数
+    function genxin_fuhao_hs(fuhao_xingcan) {
+        jisuanqi_Elem.fuhao_bl.innerHTML = fuhao_xingcan;
+    }
+
+    // 运算 封装成 匿名函数 自执行
+    var chaozuo_hs = (function () {
+
+        // 创建对象 管理函数
+        var suansu_hanshu_dx = {
+            // 加法函数
+            jia: function (shuzi_1, shuzi_2) {
+                return +shuzi_1 + +shuzi_2;
+            },
+            // 减法方法
+            jian: function (shuzi_1, shuzi_2) {
+                return shuzi_1 - shuzi_2;
+            },
+            // 乘法方法
+            cheng: function (shuzi_1, shuzi_2) {
+                return shuzi_1 * shuzi_2;
+            },
+            // 除法方法
+            chu: function (shuzi_1, shuzi_2) {
+                return shuzi_1 / shuzi_2;
+            },
+
+            // mod法方法
+            mod: function (shuzi_1, shuzi_2) {
+                return shuzi_1 % shuzi_2;
+            },
+
+            // 提供方法 给外部添加新运算方法
+            tianjia_fangfa_hs: function (fangfaming_xingcan, hanshuming_xingcan) {
+                // 判断方法是否已经存在 如果不存在 则指向这个新方法
+                if (!suansu_hanshu_dx[fangfaming_xingcan]) {
+                    suansu_hanshu_dx[fangfaming_xingcan] = hanshuming_xingcan;
+                }
+                // return this; // 链式调用
+                return suansu_hanshu_dx; // 链式调用
+            }
+        };
+
+        // 运算函数 代替switch 
+        function chaozuo_hs(hanshuming_xingcan) {
+            // 先判断传入 运算函数名 如 add 是否存在,如果 为假 抛出错误
+            if (!suansu_hanshu_dx[hanshuming_xingcan]) throw new Error('不存在名为' + hanshuming_xingcan + '的运算方法');
+            // return suansu_hanshu_dx[hanshuming_xingcan](shuzi_1, shuzi_2); //调用下面方法
+            return suansu_hanshu_dx[hanshuming_xingcan].apply(suansu_hanshu_dx, [].slice.call(arguments, 1, arguments.length));
+        }
+        chaozuo_hs.tianjia_fangfa_hs = suansu_hanshu_dx.tianjia_fangfa_hs;
+
+        return chaozuo_hs;
+
+    })();
+
+    // 在外部添加新方法
+    chaozuo_hs.tianjia_fangfa_hs('power', function (shuzi_1, shuzi_2) {
+        return Math.pow(shuzi_1, shuzi_2);
+    });
+
+    // 输出结果函数
+    function shuchu_jieguo_hs(jieguo_xingcan) {
+        jisuanqi_Elem.jieguo_shuchu_bl.innerHTML = jieguo_xingcan;
+    }
+})()

@@ -1,0 +1,151 @@
+/*公共样式 和公共组件*/
+.container {
+	/*站点导航*/
+	width: 1200px;
+	margin: 0 auto;
+}
+
+a.link {
+	/*链接正常颜色*/
+	color: #4d555d;
+}
+
+a.link:hover {
+	/*链接经过颜色*/
+	color: #f01414 !important;
+}
+
+.transition {
+	/* 添加过度动画 */
+	transition: all 0.5s;
+	-o-transition: all 0.5s;
+	-ms-transition: all 0.5s;
+	-moz-transition: all 0.5s;
+	-webkit-transition: all 0.5s;
+}
+/* icon */
+@font-face {
+	font-family: "iconfont";
+	src: url('font/iconfont.eot?t=1538786322711');
+	/* IE9*/
+	src: url('font/iconfont.eot?t=1538786322711#iefix') format('embedded-opentype'),
+		/* IE6-IE8 */
+		url('data:application/x-font-woff;charset=utf-8;base64,d09GRgABAAAAAATUAAsAAAAAB1AAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAABHU1VCAAABCAAAADMAAABCsP6z7U9TLzIAAAE8AAAARAAAAFY7ekgzY21hcAAAAYAAAABWAAABhmNWztVnbHlmAAAB2AAAAQgAAAE0YvVjJmhlYWQAAALgAAAALwAAADYS244eaGhlYQAAAxAAAAAcAAAAJAfeA4RobXR4AAADLAAAAAwAAAAMDAAAAGxvY2EAAAM4AAAACAAAAAgAJgCabWF4cAAAA0AAAAAeAAAAIAEQAF1uYW1lAAADYAAAAUUAAAJtPlT+fXBvc3QAAASoAAAAKgAAADtxVrlUeJxjYGRgYOBikGPQYWB0cfMJYeBgYGGAAJAMY05meiJQDMoDyrGAaQ4gZoOIAgCKIwNPAHicY2BkYWCcwMDKwMHUyXSGgYGhH0IzvmYwYuRgYGBiYGVmwAoC0lxTGByesjxzZG7438AQw9zA0AAUZgTJAQDiNgwneJztkMERgCAMBPcAeTgW4sMm6MKX3UsbmATtwpvZXHKBT4AFyMZhFNCFcJ2WKvLMGnmJN9VcpLv0NgZ8bpLtqnnyf6r82qLu75T8WhPve5ugBynbDlYAAHicXUw7TsNAFHxvN15/s8Zex59ssL3+FpGCZIUUIKUCiTJVegpOQcdVOAInoKJLARIVJQWnWHBEg5hiRqP5AMIIuiPXEAAIGzdDzExkJuux2+LwhTFKJxPo6nfLEEK/migycqHfcOnMpKOfLWr6eOUsovEG4PtAP+gZnICCHUA75CTipFqR9ZYYf40YcmQ+YSbHWiVqmEWsVmPU03rk8/XmEsdGgXFB8E6UGedZ2RVHKfAxrFLO06pRR1FPMveQekuXeb3UFsfPVSi1LeahQ/c3vphO5vGtSKbUIGRiPPC0bH+HbZly8s8qHqdWc1+ILt/3kQwWpY8vPEockbmhHZj8tIEf8XMoyHicY2BkYGAAYs9mi9Px/DZfGbhZGEDg+j1VIQT9/xwLA7M+kMvBwAQSBQATOQllAHicY2BkYGBu+N/AEMPCAAJAkpEBFTADAEcJAmwEAAAABAAAAAQAAAAAAAAAACYAmnicY2BkYGBgZggEYhBgAmIuIGRg+A/mMwAAEMkBbgAAeJxlj01OwzAQhV/6B6QSqqhgh+QFYgEo/RGrblhUavdddN+mTpsqiSPHrdQDcB6OwAk4AtyAO/BIJ5s2lsffvHljTwDc4Acejt8t95E9XDI7cg0XuBeuU38QbpBfhJto41W4Rf1N2MczpsJtdGF5g9e4YvaEd2EPHXwI13CNT+E69S/hBvlbuIk7/Aq30PHqwj7mXle4jUcv9sdWL5xeqeVBxaHJIpM5v4KZXu+Sha3S6pxrW8QmU4OgX0lTnWlb3VPs10PnIhVZk6oJqzpJjMqt2erQBRvn8lGvF4kehCblWGP+tsYCjnEFhSUOjDFCGGSIyujoO1Vm9K+xQ8Jee1Y9zed0WxTU/3OFAQL0z1xTurLSeTpPgT1fG1J1dCtuy56UNJFezUkSskJe1rZUQuoBNmVXjhF6XNGJPyhnSP8ACVpuyAAAAHicY2BigAAuBuyAmZGJkZmRhYG1IjMxJ5EzPb+0vDQ5I9WIgQEAPhkF0gAA') format('woff'),
+		url('font/iconfont.ttf?t=1538786322711') format('truetype'),
+		/* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+		url('font/iconfont.svg?t=1538786322711#iconfont') format('svg');
+	/* iOS 4.1- */
+}
+
+.icon {
+	font-family: "iconfont" !important;
+	font-size: 14px;
+	font-style: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* dropdown 公共部分*/
+.dropdown {
+	position: relative;
+}
+
+.dropdown-toggle {
+	position: relative;
+	z-index: 2;
+}
+
+.dropdown-arrow {
+	display: inline-block;
+	/* background-repeat: no-repeat; */
+	line-height: 1;
+	vertical-align: middle;
+}
+
+.dropdown-layer {
+	display: none;
+	position: absolute;
+	z-index: 1;
+}
+
+.dropdown-left {
+	left: 0;
+	right: auto;
+}
+
+.dropdown-right {
+	right: 0;
+	left: auto;
+}
+
+/* 使用 css3属性 将旋转提取出来 有空格 */
+[class*="-active"] .dropdown-arrow {
+	transform: rotate(180deg);
+	/* 添加厂商前缀 提高兼容性 */
+	-o-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-webkit-transform: rotate(180deg);
+
+	/* 添加过度动画 */
+	/* transition: all 0.5s;
+            -o-transition: all 0.5s;
+            -ms-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -webkit-transition: all 0.5s; */
+}
+
+/* 独有的部分 menu dropdown */
+.menu .dropdown-toggle {
+	display: block;
+	height: 100%;
+	/* padding: 0 16px 0 12px; */
+	padding: 0 13px 0 12px;
+	border-left: 1px solid #f3f5f7;
+	border-right: 1px solid #f3f5f7;
+}
+
+.menu .dropdown-arrow {
+	/* width: 8px;
+	height: 6px; */
+	/* background-image: url(../img/dropdown-arrow.png); */
+	/* margin-left: 8px; */
+	margin-left: 5px;
+	/* background-color: yellow; */
+}
+
+.menu .dropdown-layer {
+	top: 43px;
+	/* top: 100%; */
+	background-color: #fff;
+	border: 1px solid #cdd0d4;
+}
+
+.menu-item {
+	display: block;
+	height: 30px;
+	line-height: 30px;
+	padding: 0 12px;
+	color: #4d555d;
+	white-space: nowrap;
+
+}
+
+.menu-item:hover {
+	background-color: #f3f5f7;
+}
+
+/*下拉菜单通过js和css来实现dropdown*/
+/* .menu.dropdown-active 没有空格写法 同一级 既有 menu 又有 dropdown*/
+.menu-active .dropdown-toggle {
+	background-color: #fff;
+	border-color: #cdd0d4;
+}
+
+.menu-active .dropdown-arrow {
+	/* background-image: url(../img/dropdown-arrow-active.png); */
+}
+
+.menu-active .dropdown-layer {
+	display: block;
+}
