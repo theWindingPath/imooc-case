@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>显示和隐藏模块</title>
+    <link rel="stylesheet" href="../css/base.css" />
+    <style>
+        body {
+            width: 400px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            width: 50%;
+            height: 30px;
+        }
+
+        #box {
+            display: none;
+            width: 100%;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="btn-show" class="btn">显示</button><button id="btn-hide" class="btn">隐藏</button>
+    <div id="box"></div>
+
+
+    <script src="../js/jquery.js"></script>
+    <script src="../js/showHide.js"></script>
+    <script>
+        // var silent = {
+        //     // show: function ($elem, showCallback, shownCallback) {
+        //     //     //将代码写到里面 增加耦合度 写一个回调函数 可以解耦
+        //     //     // $elem.html('<p>我要显示了</p>');
+        //     //     // 判断传进来参数 是函数 就执行
+        //     //     // if (typeof showCallback === 'function') showCallback();
+
+        //     //     // 使用发布 订阅方式 适合多人协作
+        //     //     // trigger 触发事件 
+        //     //     $elem.trigger('show');
+        //     //     $elem.show();
+        //     //     $elem.trigger('shown');
+
+        //     //     // if (typeof shownCallback === 'function') shownCallback();
+        //     //     // setTimeout(function () {
+        //     //     //     $elem.html($elem.html() + '<p>我已经显示了</p>');
+        //     //     // },1000);
+        //     // },
+
+        //     show: function ($elem) {
+        //         //将代码写到里面 增加耦合度 写一个回调函数 可以解耦
+        //         // $elem.html('<p>我要显示了</p>');
+        //         // 判断传进来参数 是函数 就执行
+        //         // if (typeof showCallback === 'function') showCallback();
+
+        //         // 使用发布 订阅方式 适合多人协作
+        //         // trigger 触发事件 
+        //         $elem.trigger('show');
+        //         $elem.show();
+        //         $elem.trigger('shown');
+
+        //         // if (typeof shownCallback === 'function') shownCallback();
+        //         // setTimeout(function () {
+        //         //     $elem.html($elem.html() + '<p>我已经显示了</p>');
+        //         // },1000);
+        //     },
+        //     hide: function ($elem) {
+        //         $elem.trigger('hide');
+        //         $elem.hide();
+        //         $elem.trigger('hidden');
+        //     }
+        // };
+        // var css3 = {
+        //     fade: {
+        //         show: function () {
+
+        //         },
+        //         hide: function () {
+
+        //         }
+
+        //     },
+        //     slideUpDown: {
+        //         show: function () {
+
+        //         },
+        //         hide: function () {
+
+        //         }
+
+        //     },
+        //     slideLeftRight: {
+        //         show: function () {
+
+        //         },
+        //         hide: function () {
+
+        //         }
+
+        //     },
+        //     fadeSlideUpDown: {
+        //         show: function () {
+
+        //         },
+        //         hide: function () {
+
+        //         }
+        //     },
+        //     fadeSlideLeftRight: {
+        //         show: function () {
+
+        //         },
+        //         hide: function () {
+
+        //         }
+        //     }
+        // };
+        // var js = {
+        //     fade: {
+        //         show: function () {
+
+        //         },
+        //         hide: function () {
+
+        //         }
+        //     },
+        //     slideUpDown: {
+        //         show: function () {
+
+        //         },
+        //         hide: function () {
+
+        //         }
+        //     },
+        //     slideLeftRight: {
+        //         show: function () {
+
+        //         },
+        //         hide: function () {
+
+        //         }
+        //     },
+        //     fadeSlideUpDown: {
+        //         show: function () {
+
+        //         },
+        //         hide: function () {
+
+        //         }
+        //     },
+        //     fadeSlideLeftRight: {
+        //         show: function () {
+
+        //         },
+        //         hide: function () {
+
+        //         }
+        //     }
+        // };
+
+        var $box = $('#box');
+        // 在执行show 前 执行一般 init初始化 
+        silent.init($box);
+
+        // 回调函数 解耦
+        $('#btn-show').on('click', function () {
+            silent.show($box);
+        });
+        // // 回调函数 解耦
+        // $('#btn-show').on('click', function () {
+        //     silent.show($box, function () {
+        //         $box.html('<p>我要显示了</p>');
+        //     }, function () {
+        //         setTimeout(function () {
+        //             $box.html($box.html() + '<p>我已经显示了</p>');
+        //         }, 1000);
+        //     });
+        // });
+
+        // 小A 接收 show 和 shown 事件 还要接收 hide 和 hidden
+        $box.on('show shown hide hidden', function (e) {
+            console.log(e.type); // 消息传递机制行得通
+            // if (e.type === 'show') { // 显示之前
+            //     $box.html($box.html() + '<p>我要显示了</p>');
+            // } else if (e.type === 'shown') { // 表示显示之后
+            //     setTimeout(function () {
+            //         $box.html($box.html() + '<p>我已经显示了</p>');
+            //     }, 1000);
+            // }
+        });
+
+        // // 小C 增加新功能 监听发布事件 
+        // $box.on('show shown', function (e) {
+        //     // console.log(e.type);
+        //     if (e.type === 'show') { // 显示之前
+        //         $box.css('background-color', 'yellow'); // 将背景颜色 改为黄色
+        //     } else if (e.type === 'shown') { // 表示显示之后
+        //         setTimeout(function () {
+        //             $box.css('background-color', ''); // 一秒钟后 还原原来颜色 
+        //         }, 1000);
+        //     }
+        // });
+
+        $('#btn-hide').on('click', function () {
+            silent.hide($box);
+        });
+    </script>
+</body>
+
+</html>

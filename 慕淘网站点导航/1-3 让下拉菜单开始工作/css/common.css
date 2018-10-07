@@ -142,9 +142,9 @@ a.link:hover {
 	border-color: #cdd0d4;
 }
 
-.menu-active .dropdown-arrow {
-	/* background-image: url(../img/dropdown-arrow-active.png); */
-}
+/* .menu-active .dropdown-arrow {
+	background-image: url(../img/dropdown-arrow-active.png);
+} */
 
 .menu-active .dropdown-layer {
 	display: block;
