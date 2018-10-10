@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>显示和隐藏模块</title>
+    <link rel="stylesheet" href="../css/base.css" />
+    <style>
+        body {
+            width: 400px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            width: 50%;
+            height: 30px;
+        }
+
+        #box {
+            width: 100%;
+            /* height: 200px; */
+            /* padding: 100px 0; */
+            background-color: red;
+            overflow: hidden;
+        }
+
+        /* 过度 从一个状态过度到另一个状态 */
+        .transition {
+            -o-transition: all 0.5s;
+            -ms-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -webkit-transition: all 0.5s;
+            transition: all 0.5s;
+        }
+
+        .fadeOut {
+            visibility: hidden !important;
+            opacity: 0 !important;
+        }
+
+        /*  slideUpDownCollapse 上下卷动*/
+        /* id 优先级高于 class  可以加权重 important*/
+        .slideUpDownCollapse {
+            height: 0 !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        /* 变换宽度 */
+        .slideLeftRightCollapse {
+            width: 0 !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="btn-show" class="btn">显示</button><button id="btn-hide" class="btn">隐藏</button>
+    <div id="box" class="transition">
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+    </div>
+
+    <script src="../js/jquery.js"></script>
+    <script src="../js/transition.js"></script>
+    <script src="../js/showHide.js"></script>
+    <script>
+        var $box = $('#box');
+
+        // var showHide = window.mt.showHide($box, {
+        //     css3: true,
+        //     animation: 'fade'
+        // });
+
+        // 改成插件 通过插件方式调用
+        $box.showHide({
+            css3: true,
+            js: true,
+            animation: 'fade'
+        });
+
+        // js.fadeSlideLeftRight.init($box);
+
+        // 回调函数 解耦
+        $('#btn-show').on('click', function () {
+            // js.fadeSlideLeftRight.show($box);
+            // showHide.show($box);
+            // showHide.show();
+            $box.showHide('show');
+        });
+        $('#btn-hide').on('click', function () {
+            // js.fadeSlideLeftRight.hide($box);
+            // showHide.hide($box);
+            $box.showHide('hide');
+        });
+
+        // 小A 接收 show 和 shown 事件 还要接收 hide 和 hidden
+        $box.on('show shown hide hidden', function (e) {
+            console.log(e.type); // 消息传递机制行得通
+        });
+    </script>
+</body>
+
+</html>
