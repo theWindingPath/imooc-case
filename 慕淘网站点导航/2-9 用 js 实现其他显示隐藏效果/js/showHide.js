@@ -190,87 +190,238 @@ var js = {
     },
     slideLeftRight: {
         init: function ($elem) {
-            //初始化前 获取 width等属性 padding
-            var styles = {}; // 空对象 保存 属性
-
-            // styles.width = $elem.css('width');
-            styles['width'] = $elem.css('width');
-            styles['padding-left'] = $elem.css('padding-left');// 因为有- 没法用.
-            styles['padding-right'] = $elem.css('padding-right');
-            // styles是局部的 需要保存起来 其他函数才可以使用
-            $elem.data('styles',styles); // 保存数据
-
-            $elem.removeClass('transition');
-            init($elem, function() { //初始化 隐藏
-                $elem.css({ // 修改 css样式 jQuery没有封装响应函数 自定义s
-                    'width': 0,
-                    'padding-left': 0,
-                    'padding-right': 0
-                });
+            js._customInit($elem, { // 传一个对象过去
+                'width': 0,
+                'padding-left': 0,
+                'padding-right': 0
             });
+
+            // //初始化前 获取 width等属性 padding
+            // var styles = {}; // 空对象 保存 属性
+
+            // // styles.width = $elem.css('width');
+            // styles['width'] = $elem.css('width');
+            // styles['padding-left'] = $elem.css('padding-left'); // 因为有- 没法用.
+            // styles['padding-right'] = $elem.css('padding-right');
+            // // styles是局部的 需要保存起来 其他函数才可以使用
+            // $elem.data('styles', styles); // 保存数据
+
+            // $elem.removeClass('transition');
+            // init($elem, function () { //初始化 隐藏
+            //     $elem.css({ // 修改 css样式 jQuery没有封装响应函数 自定义s
+            //         'width': 0,
+            //         'padding-left': 0,
+            //         'padding-right': 0
+            //     });
+            // });
         },
         show: function ($elem) {
-            show($elem, function() { // 调用上面show 和回调
-                var styles = $elem.data('styles');//获取
+            js._customShow($elem);
 
-                $elem.show();
-                // 自己做动画 使用 animatie
-                $elem.stop().animate({
-                    'width': styles['width'],
-                    'padding-left': styles['padding-left'],
-                    'padding-right': styles['padding-right']
-                }, function() {// 动画执行完毕 在这个回调中
-                    $elem.data('status', 'shown').trigger('shown');
-                });
-            });
+            // show($elem, function () { // 调用上面show 和回调
+            //     var styles = $elem.data('styles'); //获取
+
+            //     $elem.show();
+            //     // 自己做动画 使用 animatie
+            //     $elem.stop().animate({
+            //         'width': styles['width'],
+            //         'padding-left': styles['padding-left'],
+            //         'padding-right': styles['padding-right']
+            //     }, function () { // 动画执行完毕 在这个回调中
+            //         $elem.data('status', 'shown').trigger('shown');
+            //     });
+            // });
         },
         hide: function ($elem) {
-            hide($elem, function() { // 调用上面show 和回调
-                // 自己做动画 使用 animatie
-                $elem.stop().animate({
-                    'width': 0,
-                    'padding-left': 0,
-                    'padding-right': 0
-                }, function() {
-                    $elem.hide();
-                    $elem.data('status', 'hidden').trigger('hidden');
-                });
+            js._customHide($elem, {
+                'width': 0,
+                'padding-left': 0,
+                'padding-right': 0
             });
+
+            // hide($elem, function () { // 调用上面show 和回调
+            //     // 自己做动画 使用 animatie
+            //     $elem.stop().animate({
+            //         'width': 0,
+            //         'padding-left': 0,
+            //         'padding-right': 0
+            //     }, function () {
+            //         $elem.hide();
+            //         $elem.data('status', 'hidden').trigger('hidden');
+            //     });
+            // });
         }
     },
     fadeSlideUpDown: {
-        show: function () {
+        init: function ($elem) {
+            js._customInit($elem, { // 传一个对象过去
+                'opacity': 0,
+                'height': 0,
+                'padding-top': 0,
+                'padding-down': 0
+            });
 
+            // //初始化前 获取 width等属性 padding
+            // var styles = {}; // 空对象 保存 属性
+
+            // styles['opacity'] = $elem.css('opacity');
+            // // styles.width = $elem.css('width');
+            // styles['height'] = $elem.css('height');
+            // styles['padding-top'] = $elem.css('padding-top'); // 因为有- 没法用.
+            // styles['padding-down'] = $elem.css('padding-down');
+            // // styles是局部的 需要保存起来 其他函数才可以使用
+            // $elem.data('styles', styles); // 保存数据
+
+            // $elem.removeClass('transition');
+            // init($elem, function () { //初始化 隐藏
+            //     $elem.css({ // 修改 css样式 jQuery没有封装响应函数 自定义s
+            //         'opacity': 0,
+            //         'height': 0,
+            //         'padding-top': 0,
+            //         'padding-down': 0
+            //     });
+            // });
         },
-        hide: function () {
+        show: function ($elem) {
+            js._customShow($elem);
 
+            // show($elem, function () { // 调用上面show 和回调
+            //     var styles = $elem.data('styles'); //获取
+
+            //     $elem.show();
+            //     // 自己做动画 使用 animatie
+            //     $elem.stop().animate({
+            //         'opacity': styles['opacity'],
+            //         'height': styles['height'],
+            //         'padding-top': styles['padding-top'],
+            //         'padding-bottom': styles['padding-bottom']
+            //     }, function () { // 动画执行完毕 在这个回调中
+            //         $elem.data('status', 'shown').trigger('shown');
+            //     });
+            // });
+        },
+        hide: function ($elem) {
+            js._customHide($elem, {
+                'opacity': 0,
+                'height': 0,
+                'padding-top': 0,
+                'padding-bottom': 0
+            });
+
+            // hide($elem, function () { // 调用上面show 和回调
+            //     // 自己做动画 使用 animatie
+            //     $elem.stop().animate({
+            //         'opacity': 0,
+            //         'height': 0,
+            //         'padding-top': 0,
+            //         'padding-bottom': 0
+            //     }, function () {
+            //         $elem.hide();
+            //         $elem.data('status', 'hidden').trigger('hidden');
+            //     });
+            // });
         }
     },
     fadeSlideLeftRight: {
-        show: function () {
-
+        init: function ($elem) {
+            js._customInit($elem, { // 传一个对象过去
+                'opacity': 0, //在原来基础上多加一个 opacity
+                'width': 0,
+                'padding-left': 0,
+                'padding-right': 0
+            });
         },
-        hide: function () {
-
+        show: function ($elem) {
+            js._customShow($elem);
+        },
+        hide: function ($elem) {
+            js._customHide($elem, {
+                'opacity': 0,
+                'width': 0,
+                'padding-left': 0,
+                'padding-right': 0
+            });
         }
     }
 };
 // js 内部函数 将可以复制的代码提取出来 减少冗余
-js._init = function($elem) {
+js._init = function ($elem, hiddenCallback) { // 加一个回调函数
     $elem.removeClass('transition');
-    init($elem);
+    init($elem, hiddenCallback);
 };
+// 自定义 init
+js._customInit = function ($elem, options) {
+    //初始化前 获取 width等属性 padding
+    var styles = {}; // 空对象 保存 属性
+    // 传一个对象进来 options
+    // {
+    //     'width': 0,
+    //     'padding-left':0,
+    //     'padding-right':0
+    // }
+    //遍历赋值
+    for (var p in options) {
+        styles[p] = $elem.css(p);
+    }
+    // // styles.width = $elem.css('width');
+    // styles['width'] = $elem.css('width');
+    // styles['padding-left'] = $elem.css('padding-left'); // 因为有- 没法用.
+    // styles['padding-right'] = $elem.css('padding-right');
+    // styles是局部的 需要保存起来 其他函数才可以使用
+    $elem.data('styles', styles); // 保存数据
+    js._init($elem, function () { // 调用上面的 init函数 传一个回调
+        $elem.css(options);
+    });
+    // $elem.removeClass('transition');
+    // init($elem, function () { //初始化 隐藏
+    //     $elem.css(options);
+    //     // $elem.css({ // 修改 css样式 jQuery没有封装响应函数 自定义s
+    //     //     'width': 0,
+    //     //     'padding-left': 0,
+    //     //     'padding-right': 0
+    //     // });
+    // });
+};
+
 // mode 方式 是一个字符串 不能用点 用方括号
-js._show = function($elem, mode) { // mode 对应 jQuery的函数 fadeIn 等
+js._show = function ($elem, mode) { // mode 对应 jQuery的函数 fadeIn 等
     show($elem, function () {
         $elem.stop()[mode](function () { // 动画触发完毕 再来一个回调 执行这个函数
             $elem.data('status', 'shown').trigger('shown');
         });
     });
-}
-js._hide = function($elem, mode) {
+};
+js._customShow = function($elem) {
+    show($elem, function () { // 调用上面show 和回调
+        // var styles = $elem.data('styles'); //获取
+        $elem.show();
+        $elem.stop().animate($elem.data('styles'), function () { // 动画执行完毕 在这个回调中
+            $elem.data('status', 'shown').trigger('shown');
+        });
+
+        // // 自己做动画 使用 animatie
+        // $elem.stop().animate({
+        //     'width': styles['width'],
+        //     'padding-left': styles['padding-left'],
+        //     'padding-right': styles['padding-right']
+        // }, function () { // 动画执行完毕 在这个回调中
+        //     $elem.data('status', 'shown').trigger('shown');
+        // });
+    });
+};
+
+js._hide = function ($elem, mode) {
     hide($elem, function () {
         $elem.stop()[mode](function () { // 动画触发完毕 再来一个回调 执行这个函数
+            $elem.data('status', 'hidden').trigger('hidden');
+        });
+    });
+};
+js._customHide = function($elem, options) { // 通过 options改变属性
+    hide($elem, function () { // 调用上面show 和回调
+        // 自己做动画 使用 animatie
+        $elem.stop().animate(options, function () {
+            $elem.hide();
             $elem.data('status', 'hidden').trigger('hidden');
         });
     });

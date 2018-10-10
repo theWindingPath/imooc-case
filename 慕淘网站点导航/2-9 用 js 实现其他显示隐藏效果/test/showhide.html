@@ -73,16 +73,20 @@
 
         var $box = $('#box');
         // js.slideUpDown.init($box);
-        js.slideLeftRight.init($box);
+        // js.slideLeftRight.init($box);
+        // js.fadeSlideUpDown.init($box);
+        js.fadeSlideLeftRight.init($box);
 
         // 回调函数 解耦
         $('#btn-show').on('click', function () {
             // js.slideUpDown.show($box);
-            js.slideLeftRight.show($box);
+            // js.slideLeftRight.show($box);
+            js.fadeSlideLeftRight.show($box);
         });
         $('#btn-hide').on('click', function () {
             // js.slideUpDown.hide($box);
-            js.slideLeftRight.hide($box);
+            // js.slideLeftRight.hide($box);
+            js.fadeSlideLeftRight.hide($box);
         });
 
         // 小A 接收 show 和 shown 事件 还要接收 hide 和 hidden
