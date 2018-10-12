@@ -8,7 +8,7 @@
 
     <style type="text/css">
         body{
-            background-color: gray;
+            background-color: #ddd;
         }
         /* dropdown 公共部分*/
         .dropdown {
@@ -182,7 +182,22 @@
 
     <!-- 改成独有的 -->
     <div class="menu dropdown fl" data-active="menu" data-value="2">
-        <a href="###" target="_blank" class="dropdown-toggle">我的慕淘<i class="dropdown-arrow icon transition ">&#xe641;</i></a>
+        <a href="javascript:;" class="dropdown-toggle">我的慕淘<i class="dropdown-arrow icon transition ">&#xe641;</i></a>
+        <ul class="dropdown-layer dropdown-left">
+            <li><a href="###" target="_blank" class="menu-item">已买到的宝贝</a></li>
+            <li><a href="###" target="_blank" class="menu-item">我的足迹</a></li>
+        </ul>
+    </div>
+
+    <div class="menu dropdown fl" data-active="menu" data-value="2">
+        <a href="javascript:;" class="dropdown-toggle">我的慕淘22<i class="dropdown-arrow icon transition ">&#xe641;</i></a>
+        <ul class="dropdown-layer dropdown-left">
+            <li><a href="###" target="_blank" class="menu-item">已买到的宝贝</a></li>
+            <li><a href="###" target="_blank" class="menu-item">我的足迹</a></li>
+        </ul>
+    </div>
+    <div class="menu dropdown fl" data-active="menu" data-value="2">
+        <a href="javascript:;" class="dropdown-toggle">我的慕淘33<i class="dropdown-arrow icon transition ">&#xe641;</i></a>
         <ul class="dropdown-layer dropdown-left">
             <li><a href="###" target="_blank" class="menu-item">已买到的宝贝</a></li>
             <li><a href="###" target="_blank" class="menu-item">我的足迹</a></li>
@@ -199,10 +214,13 @@
         // 调用封装好的 dropdown插件 
         // 用户自定义参数
         $('.dropdown').dropdown({  //调用的过程中传参
+            event:'hov', // 写错了 也会执行hover
+            // event:'click',
             css3: true,
             js: true,
             // animation: 'slideUpDown'
             // animation: 'fade'
+            delay: 200 // 延迟200 毫秒显示
             // active: 'menu'
         });
     </script>
