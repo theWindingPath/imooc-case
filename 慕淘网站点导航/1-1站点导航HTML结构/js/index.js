@@ -1,4 +1,5 @@
 // // console.log(123);
+// // 第一种方法
 // $('.dropdown').hover(function(){ // 鼠标移入移出 hover接收两个参数
 //     var $dropdown = $(this);
 
@@ -32,7 +33,7 @@
 
 // });
 
-
+// // 第二中方法
 // // 在 js中设置 css样式会产生 回流 和 重置
 // // console.log(123);
 // $('.dropdown').hover(function(){ // 鼠标移入移出 hover接收两个参数
@@ -40,3 +41,5 @@
 // }, function(){  //鼠标移出
 //     $(this).removeClass('dropdown-active');
 // });
+
+// 第三种方法，不使用 js , 直接使用 css 中的 hover 实现
