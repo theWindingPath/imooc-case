@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>慕淘网搜索组件</title>
+    <title>搜索框的html结构</title>
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/common.css" />
     <link rel="stylesheet" href="css/index.css" />
@@ -65,7 +65,17 @@
         <div class="container">
             <!-- h1 标签方便搜索引擎搜索 -->
             <h1 class="fl"><a href="./index.html" class="header-logo text-hidden">慕淘网</a></h1>
-            <div class="search fl"></div>
+            <div class="search fl">
+                <form action="https://s.taobao.com/search">
+                    <input type="text" name="q" placeholder="美食一元抢" autocomplete="off" class="search-inputbox fl" />
+                    <input type="submit" value="搜索" class="search-btn fl" />
+                </form>
+                <ul class="search-layer">
+                    <li class="search-layer-item">111</li>
+                    <li class="search-layer-item">111</li>
+                    <li class="search-layer-item">111</li>
+                </ul>
+            </div>
             <div class="cart fr"></div>
         </div>
     </div>
