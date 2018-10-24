@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>下拉菜单-分离特性和共性</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <style type="text/css">
+        /* 下拉菜单样式dropdown 分离共性 */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            display: block;
+        }
+
+        .dropdown-arrow {
+            display: inline-block;
+            background-repeat: no-repeat;
+            vertical-align: middle;
+        }
+
+        .dropdown-layer {
+            display: none;
+            position: absolute;
+        }
+
+        .dropdown-left {
+            left: 0;
+            right: auto;
+        }
+
+        .dropdown-right {
+            right: 0;
+            left: auto;
+        }
+
+        /* menu dropdown 分离特性 */
+        .menu .dropdown-toggle {
+            height: 100%;
+            padding: 0 16px 0 12px;
+            border-left: 1px solid #f3f5f7;
+            border-right: 1px solid #f3f5f7;
+        }
+
+        .menu .dropdown-arrow {
+            width: 8px;
+            height: 6px;
+            background-image: url(../image/dropdown-arrow.png);
+            margin-left: 8px;
+        }
+
+        .menu .dropdown-layer {
+            top: 100%;
+            background-color: #fff;
+            border: 1px solid #cdd0d4;
+        }
+
+        /* 这部分的menu 可以拿走 */
+        .menu .menu-item {
+            display: block;
+            height: 30px;
+            line-height: 30px;
+            padding: 0 12px;
+            color: #4d555d;
+            white-space: nowrap;
+            /* 没有换行 */
+        }
+
+        .menu .menu-item:hover {
+            background-color: #f3f5f7;
+        }
+
+        /* 直接添加使用 hover */
+        .menu.dropdown:hover .dropdown-toggle,
+        .menu.dropdown-active .dropdown-toggle {
+            background-color: #fff;
+            border-color: #cdd0d4;
+        }
+
+        .menu.dropdown:hover .dropdown-arrow,
+        .menu.dropdown-active .dropdown-arrow {
+            background-image: url(../image/dropdown-arrow-active.png);
+        }
+
+        .menu.dropdown:hover .dropdown-layer,
+        .menu.dropdown-active .dropdown-layer {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="menu dropdown">
+        <a href="###" class="dropdown-toggle">我的慕淘<i class="dropdown-arrow"></i></a>
+        <ul class="dropdown-layer dropdown-left">
+            <li><a href="###" target="_blank" class="menu-item">已购买的宝贝</a></li>
+            <li><a href="###" target="_blank" class="menu-item">我的足迹</a></li>
+        </ul>
+    </div>
+
+    <script src="../js/jquery.js"></script>
+    <script type="text/javascript">
+
+        $('.dropdown').hover(function(){
+            // console.log(1)
+            $(this).addClass('dropdown-active');
+        }, function(){
+            $(this).removeClass('dropdown-active');
+        });
+
+    </script>
+</body>
+
+</html>
