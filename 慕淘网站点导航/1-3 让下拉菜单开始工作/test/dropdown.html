@@ -210,50 +210,50 @@
     <script src="../js/jquery.js"></script>
     <script src="../js/dropdown.js"></script>
     <script>
-        // // 简单写法
-        $('.dropdown').hover(function () {
-            // 将 $(this) 缓存一下 只获取一次
-            var $this = $(this);
-            //获得上面 data-active的内容 menu 再加上 -active 形成 data-active
-            $this.addClass($this.data('active') + '-active');
-        }, function () {
-            var $this = $(this);
-            $this.removeClass($this.data('active') + '-active');
-        });
+        // // // 简单写法
+        // $('.dropdown').hover(function () {
+        //     // 将 $(this) 缓存一下 只获取一次
+        //     var $this = $(this);
+        //     //获得上面 data-active的内容 menu 再加上 -active 形成 data-active
+        //     $this.addClass($this.data('active') + '-active');
+        // }, function () {
+        //     var $this = $(this);
+        //     $this.removeClass($this.data('active') + '-active');
+        // });
 
-        // 封装代码方式
-        // 将上面代码 封装成一个函数 让想用的对象 传进来 复用
-        function dropdown(elem) { // 谁想充当下拉菜单 谁传进来 elem
-            // 将传进来elem 转化为 jQuery对象 
-            var $elem = $(elem),
-                activeClass = $elem.data('active') + '-active'; // 提前拼接 获取 menu-active
+        // // 封装代码方式
+        // // 将上面代码 封装成一个函数 让想用的对象 传进来 复用
+        // function dropdown(elem) { // 谁想充当下拉菜单 谁传进来 elem
+        //     // 将传进来elem 转化为 jQuery对象 
+        //     var $elem = $(elem),
+        //         activeClass = $elem.data('active') + '-active'; // 提前拼接 获取 menu-active
 
-            $elem.hover(function () {
-                //获得上面 data-active的内容 menu 再加上 -active 形成 data-active
-                $elem.addClass(activeClass);
-            }, function () {
-                $elem.removeClass(activeClass);
-            });
-        }
+        //     $elem.hover(function () {
+        //         //获得上面 data-active的内容 menu 再加上 -active 形成 data-active
+        //         $elem.addClass(activeClass);
+        //     }, function () {
+        //         $elem.removeClass(activeClass);
+        //     });
+        // }
 
-        // 使用 jQuery提供的插件
-        $.fn.extend({
-            // 插件名
-            dropdown: function () {
-                return this.each(function () { // 返回数组中的每一个
-                    dropdown(this);
-                });
-            }
-        });
+        // // 使用 jQuery提供的插件
+        // $.fn.extend({
+        //     // 插件名
+        //     dropdown: function () {
+        //         return this.each(function () { // 返回数组中的每一个
+        //             dropdown(this);
+        //         });
+        //     }
+        // });
 
-        $('.dropdown').dropdown(); //相当于 this
+        // $('.dropdown').dropdown(); //相当于 this
 
-        // 多个下拉菜单 可以遍历获得的 数组 
-        $('.dropdown').each(function() {
-            dropdown($(this));
-        });
-        // 调用函数 一个下拉菜单时
-        dropdown($('.dropdown')[0]) //获得的是数组 所需要参数是单数 一个 取数组第一个
+        // // 多个下拉菜单 可以遍历获得的 数组 
+        // $('.dropdown').each(function() {
+        //     dropdown($(this));
+        // });
+        // // 调用函数 一个下拉菜单时
+        // dropdown($('.dropdown')[0]) //获得的是数组 所需要参数是单数 一个 取数组第一个
 
         // 调用封装好的 dropdown插件 
         $('.dropdown').dropdown(); // 调用 dropdown.js 下的方法
