@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2-2 静静的显示和隐藏（2）</title>
+    <link rel="stylesheet" href="../css/base.css" />
+    <style>
+        body {
+            width: 400px;
+            margin: 0 auto;
+        }
+        .btn {
+            width: 50%;
+            height: 30px;
+        }
+        #box {
+            width: 100%;
+            height: 200px;
+            background-color: orangered;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="btn-show" class="btn">显示333</button><button id="btn-hide" class="btn">隐藏333</button>
+    <div id="box"></div>
+
+    <script src="../js/jquery.js"></script>
+    <script src="../js/showhide-2.js"></script>
+    <script>
+
+        // 方法三调用
+        var $hezi_bianliang = $('#box'); // 获取box节点 
+        // 调用初始化 init 函数
+        silent_duixiang.init($hezi_bianliang);
+        $('#btn-show').on('click', function () { // 给btn-show添加点击事件
+            silent_duixiang.xianshi_hanshu($hezi_bianliang);
+        });
+
+        $('#btn-hide').on('click', function () { // 隐藏
+            silent_duixiang.yincang_hanshu($hezi_bianliang); // 调用 对象里的方法
+        });
+
+        // on绑定 show hide 事件
+        $hezi_bianliang.on('show shown hide hidden003', function (e) {
+            console.log(e.type); // 打印触发事件的类似 show hide
+        })
+
+    </script>
+
+</body>
+
+</html>

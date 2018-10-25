@@ -5,8 +5,10 @@ var silent = {
         // is() 判断是显示还是隐藏
         if($elem.is(':hidden')) {// 为真 是隐藏状态 hidden
             $elem.data('status', 'hidden');
+            // console.log($elem.data('status'));
         }else{// 为假 显示状态 shown
             $elem.data('status', 'shown');
+            // console.log($elem.data('status'));
         }
 
     },
@@ -19,8 +21,11 @@ var silent = {
 
         // 设置状态  用data
         $elem.data('status', 'show').trigger('show');
+        // console.log($elem.data('status'));
         $elem.show();
         $elem.data('status', 'shown').trigger('shown');
+
+        // console.log($elem.data('status')); // 最后的状态是
     },
     hide: function ($elem) {
         // hide也一样 只执行一次 不会连续执行相同事件
@@ -30,6 +35,8 @@ var silent = {
         $elem.data('status', 'hide').trigger('hide');
         $elem.hide();
         $elem.data('status', 'hidden').trigger('hidden');
+
+        // console.log($elem.data('status'));
     }
 };
 var css3 = {
