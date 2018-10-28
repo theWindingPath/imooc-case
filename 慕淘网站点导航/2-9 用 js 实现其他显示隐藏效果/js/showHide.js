@@ -201,7 +201,7 @@ var js = {
 
             // // styles.width = $elem.css('width');
             // styles['width'] = $elem.css('width');
-            // styles['padding-left'] = $elem.css('padding-left'); // 因为有- 没法用.
+            // styles['padding-left'] = $elem.css('padding-left'); // 因为有- 没法用. 用[]
             // styles['padding-right'] = $elem.css('padding-right');
             // // styles是局部的 需要保存起来 其他函数才可以使用
             // $elem.data('styles', styles); // 保存数据
