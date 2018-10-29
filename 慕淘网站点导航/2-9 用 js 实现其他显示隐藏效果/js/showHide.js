@@ -360,8 +360,8 @@ js._customInit = function ($elem, options) {
     //     'padding-right':0
     // }
     //遍历赋值
-    for (var p in options) {
-        styles[p] = $elem.css(p);
+    for (var p in options) { // 遍历对象
+        styles[p] = $elem.css(p);  // p为 options对象 左边的 属性 'width'/'padding-left'  字符串
     }
     // // styles.width = $elem.css('width');
     // styles['width'] = $elem.css('width');
