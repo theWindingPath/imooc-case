@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>1-5 下拉箭头旋转实现</title>
+    <link rel="stylesheet" href="../css/base.css">
+    <style type="text/css">
+        /* 下拉菜单样式dropdown 分离共性 */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-toggle {
+            display: block;
+        }
+
+        .dropdown-arrow {
+            display: inline-block;
+            background-repeat: no-repeat;
+            vertical-align: middle;
+        }
+
+        .dropdown-layer {
+            display: none;
+            position: absolute;
+        }
+
+        .dropdown-left {
+            left: 0;
+            right: auto;
+        }
+
+        .dropdown-right {
+            right: 0;
+            left: auto;
+        }
+
+        /* menu dropdown 分离特性 */
+        .menu .dropdown-toggle {
+            height: 100%;
+            padding: 0 16px 0 12px;
+            border-left: 1px solid #f3f5f7;
+            border-right: 1px solid #f3f5f7;
+        }
+
+        .menu .dropdown-arrow {
+            /* width: 8px;
+            height: 6px;
+            background-image: url(../image/dropdown-arrow.png); */
+            margin-left: 8px;
+        }
+
+        .menu .dropdown-layer {
+            top: 100%;
+            background-color: #fff;
+            border: 1px solid #cdd0d4;
+        }
+
+        /* 这部分的menu 可以拿走 */
+        .menu-item {
+            display: block;
+            height: 30px;
+            line-height: 30px;
+            padding: 0 12px;
+            color: #4d555d;
+            white-space: nowrap;
+            /* 没有换行 */
+        }
+
+        .menu-item:hover {
+            background-color: #f3f5f7;
+        }
+
+        .menu-active .dropdown-toggle {
+            background-color: #fff;
+            border-color: #cdd0d4;
+        }
+
+        .menu-active .dropdown-arrow {
+            /* background-image: url(../image/dropdown-arrow-active.png); */
+        }
+
+        .menu-active .dropdown-layer {
+            display: block;
+        }
+
+        /* css3实现三角形下拉箭头 使用transparent*/
+        /* 宽高设置为0 */
+        .icon-triangle-down {
+            width: 0px;
+            height: 0px;
+            border: 4px solid #565656;
+            border-right-color: transparent;
+            border-left-color: transparent;
+            border-bottom: none;
+        }
+
+        .menu-active .icon-triangle-down {
+            /* border-color: orangered; */
+            border: 4px solid orangered;
+            border-right-color: transparent;
+            border-left-color: transparent;
+            border-top: none;
+        }
+
+        /* 图标字体下拉箭头 */
+        @font-face {
+            font-family: "iconfont";
+            src: url('font/iconfont.eot?t=1477124206');
+            /* IE9*/
+            src: url('font/iconfont.eot?t=1477124206#iefix') format('embedded-opentype'),
+                /* IE6-IE8 */
+                url('font/iconfont.woff?t=1477124206') format('woff'),
+                /* chrome, firefox */
+                url('font/iconfont.ttf?t=1477124206') format('truetype'),
+                /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+                url('font/iconfont.svg?t=1477124206#iconfont') format('svg');
+            /* iOS 4.1- */
+        }
+
+        .icon {
+            font-family: "iconfont" !important;
+            font-size: 14px;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* 单菜单旋转 使用transform rotate(180deg) 旋转180度 */
+        /* 兼容浏览器 -o- ms moz webkit  */
+        /* .menu-active .dropdown-arrow {
+            -o-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+        } */
+
+        /* 多菜单旋转 使用 [class*= '-active'] 选择所有包含 -active 的类 */
+        [class*= '-active'] .dropdown-arrow {
+            -o-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+            -moz-transform: rotate(180deg);
+            -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+        }
+
+        /* transition all 0.5s 过度效果  */
+        .transition-xiala {
+            -o-transition: all 0.5s;
+            -ms-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -webkit-transition: all 0.5s;
+            transition: all 0.5s;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- css下拉箭头
+    <div class="menu dropdown fl" data-active="menu">
+        <a href="###" class="dropdown-toggle">我的慕淘222222<i class="icon-triangle-down dropdown-arrow"></i></a>
+        <ul class="dropdown-layer dropdown-left">
+            <li><a href="###" target="_blank" class="menu-item">已购买的宝贝22</a></li>
+            <li><a href="###" target="_blank" class="menu-item">我的足迹2222</a></li>
+        </ul>
+    </div> -->
+
+    <!-- font图标字体下拉箭头 -->
+    <div class="menu dropdown fl" data-active="menu">
+        <a href="###" class="dropdown-toggle">我的慕淘222222<i class="icon dropdown-arrow transition-xiala">&#xe609;</i></a>
+        <ul class="dropdown-layer dropdown-left">
+            <li><a href="###" target="_blank" class="menu-item">已购买的宝贝22</a></li>
+            <li><a href="###" target="_blank" class="menu-item">我的足迹2222</a></li>
+        </ul>
+    </div>
+
+    <script src="../js/jquery.js"></script>
+    <script src="../js/dropdownMK.js"></script>
+    <script type="text/javascript">
+        // $('.dropdown').hover(function(){
+        //     // console.log(1)
+        //     $(this).addClass('dropdown-active');
+        // }, function(){
+        //     $(this).removeClass('dropdown-active');
+        // });
+
+
+        // // 11111简单写法 将dropdown-active 改为menu-active
+        // // 使用$(this) jquery对象 缓存
+        // // 使用data-active 保存字符串
+        // $('.dropdown').hover(function(){
+        //     var $this_jq_dx = $(this);
+        //     // $this_jq_dx.addClass('menu-active');
+        //     $this_jq_dx.addClass($this_jq_dx.data('active') + '-active'); // 字符串拼接
+        // }, function(){
+        //     var $this_jq_dx = $(this);
+        //     $this_jq_dx.removeClass($this_jq_dx.data('active') + '-active');
+        // });
+
+
+        // // 222222封装代码方式 放到一个函数里 在调用
+        // // 通过传一个参数进来 
+        // function xiala_hanshu(canshu) { // 定义函数 带一个参数
+        //     var $this_jq_dx = $(canshu); // 将缓存变量 提到函数外面
+        //     // 将data-active 拿出来 保存到activeClass里
+        //     var activeClass_bianlian = $this_jq_dx.data('active') + '-active';
+
+        //     $this_jq_dx.hover(function () {
+        //         $this_jq_dx.addClass(activeClass_bianlian); 
+        //     }, function () {
+        //         $this_jq_dx.removeClass(activeClass_bianlian);
+        //     });
+        // }
+
+        // // // 单个下拉菜单 调用函数
+        // // xiala_hanshu($('.dropdown')[0]); // $('.dropdown')获取的是一个类数组 取第一个
+
+        // // 使用 each() 函数  多个菜单调用 
+        // $('.dropdown').each(function() {
+        //     xiala_hanshu(this); // this 代表 $('.dropdown')[n]
+        // });
+
+
+        // // 33333插件方式 使用 jQuery提供的 extend() 将自定义函数 转化为jQuery 插件
+        // function xiala_hanshu(canshu) { // 定义函数 带一个参数
+        //     var $this_jq_dx = $(canshu); // 将缓存变量 提到函数外面
+        //     var activeClass_bianlian = $this_jq_dx.data('active') + '-active';
+
+        //     $this_jq_dx.hover(function () {
+        //         $this_jq_dx.addClass(activeClass_bianlian); 
+        //     }, function () {
+        //         $this_jq_dx.removeClass(activeClass_bianlian);
+        //     });
+        // }
+        // // jquery插件
+        // $.fn.extend({
+        //     xiala_chajian:function(){
+        //         return this.each(function(){
+        //             xiala_hanshu(this);
+        //         });
+        //     }
+        // });
+        // // jQuery对象 可以调用jQuery插件
+        // $('.dropdown').xiala_chajian();
+
+
+        // 444444模块封装，将这上部分代码放到一个js文件里，
+        $('.dropdown').xiala_chajian(); // 在这里调用
+    </script>
+</body>
+
+</html>
