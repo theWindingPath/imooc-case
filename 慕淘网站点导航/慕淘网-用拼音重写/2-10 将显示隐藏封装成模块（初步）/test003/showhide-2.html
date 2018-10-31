@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>2-9 用js实现其他效果（封装内部函数）</title>
+    <title>2-10 将显示隐藏封装成模块（初步）</title>
     <link rel="stylesheet" href="../css/base.css" />
     <style>
         body {
@@ -73,37 +73,49 @@
     <script src="../js/showhide-2.js"></script>
     <script>
         var $hezi_bianliang = $('#box'); // 获取box节点 
-        // // 调用 js 下用animate 做的左右卷动
-        // js_duixiang.slideLeftRight_fangfa.init($hezi_bianliang);
 
-        // // 调用 js 下用animate 做的淡入淡出上下卷动
-        // js_duixiang.fadeslideUpDown_fangfa.init($hezi_bianliang);
+        // 初始化对象 传相应参数过去 返回的是对象 
+        var showhide_duixiang = window.mt_duixiang.showhide_hanshu($hezi_bianliang, {
+            css3_shuxing: true, // 默认不使用css3  这是对象里的属性
+            js_shuxing: false,
+            animation_shuxing: 'slideUpDown_fangfa' // 默认淡出淡出 第一个方法
+        });
 
-        // 调用 js 下用animate 做的淡入淡出左右滚动
-        js_duixiang.fadeslideLeftRight_fangfa.init($hezi_bianliang);
+        // // 初始化对象 传相应参数过去 返回的是对象 
+        // var showhide_duixiang = window.mt_duixiang.showhide_hanshu($hezi_bianliang, {
+        //     css3_shuxing: false, // 默认不使用css3  这是对象里的属性
+        //     js_shuxing: true,
+        //     animation_shuxing: 'fadeslideLeftRight_fangfa' // 默认淡出淡出 第一个方法
+        // });
+
+        // // 初始化对象 传相应参数过去 返回的是对象 
+        // var showhide_duixiang = window.mt_duixiang.showhide_hanshu($hezi_bianliang, {
+        //     css3_shuxing: false, // 默认不使用css3  这是对象里的属性
+        //     js_shuxing: false
+        // });
+
+        // // 调用 js 下用animate 做的淡入淡出左右滚动
+        // js_duixiang.fadeslideLeftRight_fangfa.init($hezi_bianliang);
 
         $('#btn-show').on('click', function () { // 给btn-show添加点击事件
-            // // 调用 js 下用animate 做的淡入淡出上下卷动
-            // js_duixiang.slideLeftRight_fangfa.xianshi_hanshu($hezi_bianliang);
+            // // 调用 js 下用animate 做的淡入淡出左右滚动
+            // js_duixiang.fadeslideLeftRight_fangfa.xianshi_hanshu($hezi_bianliang);
 
-            // // 调用 js 下用animate 做的淡入淡出上下卷动
-            // js_duixiang.fadeslideUpDown_fangfa.xianshi_hanshu($hezi_bianliang);
-
-            // 调用 js 下用animate 做的淡入淡出左右滚动
-            js_duixiang.fadeslideLeftRight_fangfa.xianshi_hanshu($hezi_bianliang);
+            // 用showhide_duixiang调用 show函数
+            showhide_duixiang.xianshi_fangfa($hezi_bianliang);
         });
 
         $('#btn-hide').on('click', function () { // 隐藏
-            // // 调用 js 下用animate 做的淡入淡出上下卷动
-            // js_duixiang.fadeslideUpDown_fangfa.yincang_hanshu($hezi_bianliang);
+            // // 调用 js 下用animate 做的淡入淡出左右滚动
+            // js_duixiang.fadeslideLeftRight_fangfa.yincang_hanshu($hezi_bianliang);
 
-            // 调用 js 下用animate 做的淡入淡出左右滚动
-            js_duixiang.fadeslideLeftRight_fangfa.yincang_hanshu($hezi_bianliang);
+            // 用showhide_duixiang调用 hide函数
+            showhide_duixiang.yincang_fangfa($hezi_bianliang);
         });
 
         $hezi_bianliang.on('show shown hide hidden003', function (e) {
             console.log(e.type); // 打印触发事件的类似 show hide
-        })
+        });
     </script>
 
 </body>

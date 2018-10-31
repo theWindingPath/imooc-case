@@ -449,7 +449,7 @@
         var mode = null; // 定义一个对象
 
         // 将传进来得到的参数 options 覆盖 defaults 然后赋值给一个新的空对象 
-        // options = $.extend({}, defaults, options); // 如果传进来的为空 则默认使用 defaults
+        options = $.extend({}, defaults, options); // 如果传进来的为空 则默认使用 defaults
         // 判断 如果传进来 css3为真 浏览器也支持
         if (options.css3 && transition.isSupport) { // css3 过度效果
             // 判断一下 做容错 如果传错 用默认值

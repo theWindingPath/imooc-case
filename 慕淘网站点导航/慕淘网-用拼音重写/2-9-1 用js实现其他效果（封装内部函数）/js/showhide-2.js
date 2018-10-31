@@ -283,11 +283,25 @@ var js_duixiang = {
         }
     },
     fadeslideLeftRight_fangfa: { // 淡入淡出左右滚动
-        xianshi_hanshu: function () {
-
+        init: function ($elem) { //  获取元素的 width padding-left padding-right opacity 
+            // 调用封装的 animate部分内部函数 将对象传过去 需要做动画部分
+            js_duixiang._init_neibu_animate($elem, {
+                'opacity': 0,
+                'width': 0,
+                'padding-left': 0,
+                'padding-right': 0
+            });
         },
-        yincang_hanshu: function () {
-
+        xianshi_hanshu: function ($canshu) {
+            js_duixiang._xianshi_neibu_animate($canshu);
+        },
+        yincang_hanshu: function ($canshu) {
+            js_duixiang._yincang_heibu_animate($canshu, {
+                'opacity': 0,
+                'width': 0,
+                'padding-left': 0,
+                'padding-right': 0
+            });
         }
     }
 };
