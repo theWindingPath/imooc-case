@@ -74,49 +74,35 @@
     <script>
         var $hezi_bianliang = $('#box'); // 获取box节点 
 
-        // 初始化对象 传相应参数过去 返回的是对象 
-        var showhide_duixiang = window.mt_duixiang.showhide_hanshu($hezi_bianliang, {
+        // // 初始化对象 传相应参数过去 返回的是对象 
+        // var showhide_duixiang = window.mt_duixiang.showhide_hanshu($hezi_bianliang, {
+        //     css3_shuxing: true, // 默认不使用css3  这是对象里的属性
+        //     js_shuxing: false,
+        //     animation_shuxing: 'slideUpDown_fangfa' // 默认淡出淡出 第一个方法
+        // });
+
+        // 使用jQuery对象直接调用jQuery插件
+        $hezi_bianliang.xianshi_yincang_chajian({ // 传对象进来 先初始化使用哪种效果
             css3_shuxing: true, // 默认不使用css3  这是对象里的属性
             js_shuxing: false,
+            // animation_shuxing: 'fade_fangfa' // 默认淡出淡出 第一个方法
             animation_shuxing: 'slideUpDown_fangfa' // 默认淡出淡出 第一个方法
         });
 
-        // // 初始化对象 传相应参数过去 返回的是对象 
-        // var showhide_duixiang = window.mt_duixiang.showhide_hanshu($hezi_bianliang, {
-        //     css3_shuxing: false, // 默认不使用css3  这是对象里的属性
-        //     js_shuxing: true,
-        //     animation_shuxing: 'fadeslideLeftRight_fangfa' // 默认淡出淡出 第一个方法
-        // });
-
-        // // 初始化对象 传相应参数过去 返回的是对象 
-        // var showhide_duixiang = window.mt_duixiang.showhide_hanshu($hezi_bianliang, {
-        //     css3_shuxing: false, // 默认不使用css3  这是对象里的属性
-        //     js_shuxing: false
-        // });
-
-        // // 调用 js 下用animate 做的淡入淡出左右滚动
-        // js_duixiang.fadeslideLeftRight_fangfa.init($hezi_bianliang);
-
         $('#btn-show').on('click', function () { // 给btn-show添加点击事件
-            // // 调用 js 下用animate 做的淡入淡出左右滚动
-            // js_duixiang.fadeslideLeftRight_fangfa.xianshi_hanshu($hezi_bianliang);
+            // // 用$.proxy() 改变传值方式后调用
+            // showhide_duixiang.xianshi_fangfa();
 
-            // // 用showhide_duixiang调用 show函数
-            // showhide_duixiang.xianshi_fangfa($hezi_bianliang);
-
-            // 用$.proxy() 改变传值方式后调用
-            showhide_duixiang.xianshi_fangfa();
+            // 使用jQuery对象直接调用jQuery插件
+            $hezi_bianliang.xianshi_yincang_chajian('xianshi_fangfa');
         });
 
         $('#btn-hide').on('click', function () { // 隐藏
-            // // 调用 js 下用animate 做的淡入淡出左右滚动
-            // js_duixiang.fadeslideLeftRight_fangfa.yincang_hanshu($hezi_bianliang);
+            // // 用$.proxy() 改变传值方式后调用
+            // showhide_duixiang.yincang_fangfa();
 
-            // // 用showhide_duixiang调用 hide函数
-            // showhide_duixiang.yincang_fangfa($hezi_bianliang);
-
-            // 用$.proxy() 改变传值方式后调用
-            showhide_duixiang.yincang_fangfa();
+            // 使用jQuery对象直接调用jQuery插件
+            $hezi_bianliang.xianshi_yincang_chajian('yincang_fangfa');
         });
 
         $hezi_bianliang.on('show shown hide hidden003', function (e) {

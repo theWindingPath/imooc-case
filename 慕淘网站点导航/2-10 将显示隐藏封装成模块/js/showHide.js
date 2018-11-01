@@ -498,9 +498,9 @@
 
     // 改成插件
     $.fn.extend({
-        showHide: function (option) {
+        showHide: function (option) { // 在这个函数里需要调用上面showhide
             // 传进来有可能是 数组 或类数组对象 使用 this.each遍历
-            return this.each(function () {
+            return this.each(function () {  // 为什么要用 each() 遍历？
                 var $this = $(this), // 保存 this
                     // 先声明变量 
                     options = $.extend({}, defaults, typeof option === 'object' && option),
@@ -508,17 +508,20 @@
                     // mode = showHide($this, typeof option === 'object' && option);  // 这里 $this 相当于 上面$elem
                     mode = null; // 使用单例 不用每次都创建一个对象
                 // 执行前 获取它的值 
-                mode = $this.data('showHide'); // 相当于从缓存中获取
+                mode = $this.data('showHide'); // 相当于从缓存中获取 如果还没有undefined 会在下面获取
+                // console.log($this.data('showHide')); 
+                // console.log(mode); // 第一次为undefined 点击后有值
+                // if(!) 使用单例设计模式 判断
                 if (!mode) { // 如果没有值 则是第一次执行 需要赋值 如果有值 则不用执行这个函数
                     // 保存在 data里 的showHide 里  执行同时赋值给 mode
                     // $this.data('showHide', mode = showHide($this, typeof option === 'object' && option));
-                    $this.data('showHide', mode = showHide($this, options));
+                    $this.data('showHide', mode = showHide($this, options)); // 调用外部上面的showhide() 函数 传两个参数过去那个
                 }
                 // // 保存在 data里 的showHide 里  执行同时赋值给 mode
-                // $this.data('showHide', mode = sshowHide($this, typeof option === 'object' && option));
+                // $this.data('showHide', mode = showHide($this, typeof option === 'object' && option));
 
                 // 判断传进来 的 是不是函数 
-                if (typeof mode[option] === 'function') {
+                if (typeof mode[option] === 'function') { // 这里option 和options不同的
                     mode[option](); // 是就执行
                 }
             }); // 为了连缀 

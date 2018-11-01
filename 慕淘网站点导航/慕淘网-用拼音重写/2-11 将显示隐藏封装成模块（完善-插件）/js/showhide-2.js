@@ -369,101 +369,71 @@
     }
 
 
-    // 将上面方法整合 通过传参判断使用那种 （fade slideUpDown 等）
     // 定义一个默认对象 里面相对应参数
     var defaults_moren_duixiang = {
         css3_shuxing: false, // 默认不使用css3  这是对象里的属性
         js_shuxing: false,
         animation_shuxing: 'fade_fangfa' // 默认淡出淡出 第一个方法
     };
-    // // 传进来例子  表示使用css3下的 上下卷动效果
-    // {
-    //     css3_shuxing: true,
-    //     js_shuxing: false,
-    //     animation_shuxing: 'slideUpDown_fangfa'
-    // }
-
-    // // 整合一个函数 能够调用上面的所有方法
-    // function xianshi_yincang_hanshu($canshu, xiaoguoming_canshu) {
-    //     // 将传进来参数 覆盖 defaults 然后赋值给一个新对象
-    //     var xiaoguo_duixiang = $.extend({}, defaults_moren_duixiang, xiaoguoming_canshu);
-    //     // 判断使用 css3、js、slient
-    //     if(xiaoguo_duixiang.css3_shuxing && transition_bianliang.isSupport_shuxing){ // 判断用户传进来css3属性是否为真 和浏览器是否支持transition
-    //         // 在这里执行初始化init  调用上面css下的init 
-    //         css3_duixiang[xiaoguoming_canshu.animation_shuxing].init($canshu);
-    //         // 将方法放到一个对象里返回
-    //         return { // 返回对象
-    //             xianshi_fangfa: css3_duixiang[xiaoguo_duixiang.animation_shuxing].xianshi_hanshu, // 返回css3下的(fade/slide)的显示函数
-    //             yincang_fangfa: css3_duixiang[xiaoguo_duixiang.animation_shuxing].yincang_hanshu
-    //         };
-    //     } else if(xiaoguoming_canshu.js_shuxing){ // 如果js_shuxing 为true 则调用js下的方法
-    //         js_duixiang[xiaoguoming_canshu.animation_shuxing].init($canshu);
-    //         return { // 返回对象
-    //             xianshi_fangfa: js_duixiang[xiaoguo_duixiang.animation_shuxing].xianshi_hanshu, // 返回css3下的(fade/slide)的显示函数
-    //             yincang_fangfa: js_duixiang[xiaoguo_duixiang.animation_shuxing].yincang_hanshu
-    //         };
-    //     } else { // css3和js都传false 则使用 slient下的 方法
-    //         silent_duixiang.init($canshu);
-    //         return {  // 将 slient 方法返回
-    //             xianshi_fangfa: silent_duixiang.xianshi_hanshu,
-    //             yincang_fangfa: silent_duixiang.yincang_hanshu
-    //         };
-    //     }
-    // }
 
     // 将相同部分提取出来 到if外面一同执行 初始化、返回在外面一同执行
     function xianshi_yincang_hanshu($canshu, xiaoguoming_canshu) {
+        // console.log(xiaoguoming_canshu);
         var mode_xiaoguo_duixiang = null; // 定义一个对象接收效果对象 (方法 fade slide)
-
         // 将传进来参数 覆盖 defaults 然后赋值给一个新对象
         var xiaoguo_duixiang = $.extend({}, defaults_moren_duixiang, xiaoguoming_canshu);
         // 判断使用 css3、js、slient
-        if (xiaoguo_duixiang.css3_shuxing && transition_bianliang.isSupport_shuxing) { // 判断用户传进来css3属性是否为真 和浏览器是否支持transition
-            // // 在这里执行初始化init  调用上面css下的init 
-            // css3_duixiang[xiaoguoming_canshu.animation_shuxing].init($canshu);
-            // // 将方法放到一个对象里返回
-            // return { // 返回对象
-            //     xianshi_fangfa: css3_duixiang[xiaoguo_duixiang.animation_shuxing].xianshi_hanshu, // 返回css3下的(fade/slide)的显示函数
-            //     yincang_fangfa: css3_duixiang[xiaoguo_duixiang.animation_shuxing].yincang_hanshu
-            // };
-
+        if (xiaoguo_duixiang.css3_shuxing && transition_bianliang.isSupport_shuxing) {
             // 将获取内容放到 mode_xiaoguo_duixiang 如果用户没有设true 则取默认的值
             mode_xiaoguo_duixiang = css3_duixiang[xiaoguo_duixiang.animation_shuxing] || css3_duixiang[defaults_moren_duixiang.animation_shuxing];
         } else if (xiaoguoming_canshu.js_shuxing) { // 如果js_shuxing 为true 则调用js下的方法
-            // js_duixiang[xiaoguoming_canshu.animation_shuxing].init($canshu);
-            // return { // 返回对象
-            //     xianshi_fangfa: js_duixiang[xiaoguo_duixiang.animation_shuxing].xianshi_hanshu, // 返回css3下的(fade/slide)的显示函数
-            //     yincang_fangfa: js_duixiang[xiaoguo_duixiang.animation_shuxing].yincang_hanshu
-            // };
-
             // 将获取内容放到 mode_xiaoguo_duixiang
             mode_xiaoguo_duixiang = js_duixiang[xiaoguo_duixiang.animation_shuxing] || js_duixiang[defaults_moren_duixiang.animation_shuxing];
         } else { // css3和js都传false 则使用 slient下的 方法
-            // silent_duixiang.init($canshu);
-            // return { // 将 slient 方法返回
-            //     xianshi_fangfa: silent_duixiang.xianshi_hanshu,
-            //     yincang_fangfa: silent_duixiang.yincang_hanshu
-            // };
-
             mode_xiaoguo_duixiang = silent_duixiang; // 使用静静地显示隐藏
         }
         // 在if外面执行 init初始化 和return返回对象
         mode_xiaoguo_duixiang.init($canshu);
-        // return {
-        //         xianshi_fangfa: mode_xiaoguo_duixiang.xianshi_hanshu,
-        //         yincang_fangfa: mode_xiaoguo_duixiang.yincang_hanshu
-        // };
-
         // 使用jQuery 的$.proxy() 改进传值 传一次 在外面调用时 showhide_duixiang.xianshi_fangfa(不用再传值)
         return {
-                // $.proxy(第一个参数是函数本体， 第二个参数是改变this指向， 第三个是要传进第一个参数函数的值) 
-                xianshi_fangfa: $.proxy(mode_xiaoguo_duixiang.xianshi_hanshu, this, $canshu),//会将$canshu传到xianshi_hanshu里用 (可多个参数)
-                yincang_fangfa: $.proxy(mode_xiaoguo_duixiang.yincang_hanshu, this, $canshu)
+            // $.proxy(第一个参数是函数本体， 第二个参数是改变this指向， 第三个是要传进第一个参数函数的值) 
+            xianshi_fangfa: $.proxy(mode_xiaoguo_duixiang.xianshi_hanshu, this, $canshu), //会将$canshu传到xianshi_hanshu里用 (可多个参数)
+            yincang_fangfa: $.proxy(mode_xiaoguo_duixiang.yincang_hanshu, this, $canshu)
         };
     }
 
-    // 将xianshi_yincang_hanshu 放到一个window 对象上 在外面调用
-    window.mt_duixiang = window.mt_duixiang || {};
-    window.mt_duixiang.showhide_hanshu = xianshi_yincang_hanshu; // 函数本体
+    // // 将xianshi_yincang_hanshu 放到一个window 对象上 在外面调用
+    // window.mt_duixiang = window.mt_duixiang || {};
+    // window.mt_duixiang.showhide_hanshu = xianshi_yincang_hanshu; // 函数本体
+
+    // 改成jQuery插件调用 在$.fn.extend() 新定义函数使用xianshi_yincang_hanshu 
+    // 变成插件 jQuery对象可以直接调用
+    $.fn.extend({
+        xianshi_yincang_chajian: function (xuanxiang_canshu) { // 插件名xianshi_yincang_chajian，xuanxiang_canshu参数可以是字符串、类数组对象
+            //  使用this.each() 遍历？？ 为了连缀调用.？？？
+            return this.each(function () {
+                var $this_zhixiang = $(this); // 谁调用保存谁 如 $('#box')
+                //传两个参数 调用上面的xianshi_yincang_hanshu函数 返回的是一个对象 对象里有两个方法 可用
+                // 如果传进来的 xuanxiang_canshu 是一个对象 则传过去xianshi_yincang_hanshu()里 否则使用默认defaults_moren_duixiang
+                // console.log(xuanxiang_canshu);
+                // var mode_xiaoguo_duixiang = xianshi_yincang_hanshu($this_zhixiang, $.extend({}, defaults_moren_duixiang, typeof xuanxiang_canshu === 'object' && xuanxiang_canshu));
+
+                // // 传1进来是对象 才执行初始化 
+                // if (typeof xuanxiang_canshu === 'object') {
+                //     var mode_xiaoguo_duixiang = xianshi_yincang_hanshu($this_zhixiang, $.extend({}, defaults_moren_duixiang, typeof xuanxiang_canshu === 'object' && xuanxiang_canshu));
+                //     $this_zhixiang.data('mode_xiaoguo_duixiang', mode_xiaoguo_duixiang);
+                // }
+
+                // console.log(mode_xiaoguo_duixiang);
+                // 使用mode_xiaoguo_duixiang 调用show hide 方法
+                //如果传进来的是 字符串 show hide 则调用方法
+                var mode_xiaoguo_duixiang = $this_zhixiang.data('mode_xiaoguo_duixiang');
+                if (typeof mode_xiaoguo_duixiang[xuanxiang_canshu] === 'function') {
+
+                    mode_xiaoguo_duixiang[xuanxiang_canshu]();
+                }
+            });
+        }
+    });
 
 })(jQuery);
