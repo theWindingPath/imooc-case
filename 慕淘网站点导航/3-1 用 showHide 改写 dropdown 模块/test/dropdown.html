@@ -85,6 +85,10 @@
             /* background-image: url(../img/dropdown-arrow-active.png); */
         }
 
+        /*.menu-active .dropdown-layer {
+        display: block;
+        }*/
+
         /* css 自制三角形 transparent IE6不兼容*/
         .icon-triangle-down {
             width: 0;
@@ -191,11 +195,9 @@
     <script src="../js/showHide.js"></script>
     <script src="../js/dropdown.js"></script>
     <script>
-       
-
         // 调用封装好的 dropdown插件 
         // 用户自定义参数
-        $('.dropdown').dropdown({  //调用的过程中传参
+        $('.dropdown').dropdown({ //调用的过程中传参
             css3: true,
             js: true,
             // animation: 'slideUpDown'

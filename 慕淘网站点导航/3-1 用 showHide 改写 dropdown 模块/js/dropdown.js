@@ -4,13 +4,13 @@
 
     // 将上面代码 封装成一个函数 让想用的对象 传进来 复用
     // optionss 接收
-    function dropdown(elem, optionss) { // 谁想充当下拉菜单 谁传进来 elem 
+    function dropdown(elem, options) { // 谁想充当下拉菜单 谁传进来 elem 
         // 将传进来elem 转化为 jQuery对象 
         var $elem = $(elem),
             $layer = $elem.find('.dropdown-layer'), // 获取下拉层 它来调用showhide
             activeClass = $elem.data('active') + '-active'; // 提前拼接 获取 menu-active
 
-        $layer.showHide(optionss); // 使用外面传进来对象
+        $layer.showHide(options); // 使用外面传进来对象
         // // 调用之前需要初始化
         // $layer.showHide({ // 传参 对象
         //     css3: true,

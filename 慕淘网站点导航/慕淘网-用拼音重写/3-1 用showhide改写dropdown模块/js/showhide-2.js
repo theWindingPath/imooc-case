@@ -402,40 +402,6 @@
         };
     }
 
-    // // 将xianshi_yincang_hanshu 放到一个window 对象上 在外面调用
-    // window.mt_duixiang = window.mt_duixiang || {};
-    // window.mt_duixiang.showhide_hanshu = xianshi_yincang_hanshu; // 函数本体
-
-    // // 改成jQuery插件调用 在$.fn.extend() 新定义函数使用xianshi_yincang_hanshu 
-    // // 变成插件 jQuery对象可以直接调用
-    // $.fn.extend({
-    //     xianshi_yincang_chajian: function (xuanxiang_canshu) { // 插件名xianshi_yincang_chajian，xuanxiang_canshu参数可以是字符串、类数组对象
-    //         //  使用this.each() 遍历？？ 为了连缀调用.？？？
-    //         return this.each(function () {
-    //             var $this_zhixiang = $(this); // 谁调用保存谁 如 $('#box')
-    //             //传两个参数 调用上面的xianshi_yincang_hanshu函数 返回的是一个对象 对象里有两个方法 可用
-    //             // 如果传进来的 xuanxiang_canshu 是一个对象 则传过去xianshi_yincang_hanshu()里 否则使用默认defaults_moren_duixiang
-    //             // console.log(xuanxiang_canshu);
-    //             // var mode_xiaoguo_duixiang = xianshi_yincang_hanshu($this_zhixiang, $.extend({}, defaults_moren_duixiang, typeof xuanxiang_canshu === 'object' && xuanxiang_canshu));
-
-    //             // 传进来是对象 才执行初始化 
-    //             if (typeof xuanxiang_canshu === 'object') {
-    //                 var mode_xiaoguo_duixiang = xianshi_yincang_hanshu($this_zhixiang, $.extend({}, defaults_moren_duixiang, typeof xuanxiang_canshu === 'object' && xuanxiang_canshu));
-    //                 $this_zhixiang.data('mode_xiaoguo_duixiang', mode_xiaoguo_duixiang);
-    //             }
-
-    //             // console.log(mode_xiaoguo_duixiang);
-    //             // 使用mode_xiaoguo_duixiang 调用show hide 方法
-    //             //如果传进来的是 字符串 show hide 则调用方法
-    //             var mode_xiaoguo_duixiang = $this_zhixiang.data('mode_xiaoguo_duixiang');
-    //             if (typeof mode_xiaoguo_duixiang[xuanxiang_canshu] === 'function') {
-
-    //                 mode_xiaoguo_duixiang[xuanxiang_canshu]();
-    //             }
-    //         });
-    //     }
-    // });
-
     // 变成插件 jQuery对象可以直接调用
     $.fn.extend({
         xianshi_yincang_chajian: function (xuanxiang_canshu) { // 插件名xianshi_yincang_chajian，xuanxiang_canshu参数可以是字符串、类数组对象
@@ -455,15 +421,6 @@
                     $this_zhixiang.data('mode_xiaoguo_duixiang', mode_xiaoguo_duixiang);  // 将从xianshi_yincang_hanshu返回的对象 存放到$.data()上 在函数外可以调用 
                 }
 
-
-                // // 传进来是对象 才执行初始化 
-                // if (typeof xuanxiang_canshu === 'object') {
-                //     var mode_xiaoguo_duixiang = xianshi_yincang_hanshu($this_zhixiang, $.extend({}, defaults_moren_duixiang, typeof xuanxiang_canshu === 'object' && xuanxiang_canshu));
-                //     var mode_xiaoguo_duixiang = xianshi_yincang_hanshu($this_zhixiang, xuanxiang_duixiang);
-                //     $this_zhixiang.data('mode_xiaoguo_duixiang', mode_xiaoguo_duixiang);
-                // }
-
-                //如果传进来的是 字符串 show hide 则调用方法
                 // var mode_xiaoguo_duixiang = $this_zhixiang.data('mode_xiaoguo_duixiang');  // 已在上面获取 
                 if (typeof mode_xiaoguo_duixiang[xuanxiang_canshu] === 'function') { //mode_xiaoguo_duixiang[xuanxiang_canshu] 是函数则执行
                     mode_xiaoguo_duixiang[xuanxiang_canshu](); // 调用方法
@@ -471,6 +428,5 @@
             });
         }
     });
-
 
 })(jQuery);
