@@ -8,6 +8,11 @@
     <title>3-2 用构造函数的形式重写dropdown模块</title>
     <link rel="stylesheet" href="../css/base.css">
     <style type="text/css">
+
+        body{
+            background-color: #999;
+        }
+
         /* 下拉菜单样式dropdown 分离共性 */
         .dropdown {
             position: relative;
@@ -186,7 +191,8 @@
 <body>
 
     <!-- font图标字体下拉箭头 -->
-    <div class="menu dropdown fl" data-active="menu">
+    <!-- html上的 data-activeshuxing：1、不可以使用 _ , 2、会自动转换成全小写  -->
+    <div class="menu dropdown fl" data-active="menu" data-value003="003" data-activeshuxing="menu">
         <a href="###" class="dropdown-toggle">我的慕淘222222<i class="icon dropdown-arrow transition-xiala">&#xe609;</i></a>
         <ul class="dropdown-layer dropdown-left">
             <li><a href="###" target="_blank" class="menu-item">已购买的宝贝22</a></li>
@@ -205,8 +211,10 @@
         $('.dropdown').xiala_chajian({
             css3_shuxing: true,
             js_shuxing: false,
-            animation_shuxing: 'slideUpDown_fangfa' 
+            animation_shuxing: 'slideUpDown_fangfa', 
             // animation_shuxing: 'slideUpDown_fangfaxxxx' // 加入传参错误 程序要有容错性 
+
+            // activeshuxing: 'menu' // 新添加属性 menu传过去
         }); // 在这里调用
     </script>
 </body>
