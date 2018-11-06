@@ -18,7 +18,7 @@
     // });
 
     // 无论是什么方式提交的（点击提交按钮，点击下拉层），都会触发form表单的提交事件，给form表单的提交事件绑定事件
-    $form.on('submit', function(){ // 同样需要验证搜索框是否为空
+    $form.on('submit', function () { // 同样需要验证搜索框是否为空
         if ($.trim($input.val()) === '') { // 判断 如果input 输入框 为空 '' 
             // btn 默认是 submit 按钮 
             return false; // 返回false 阻止提交 默认行为  空格还可以提交
@@ -103,17 +103,37 @@
     // (可以使用事件代理机制，也就是事件冒泡)，给父类绑定事件，子类触发
     // 如父类$layer绑定一个click事件，子类.search-layer-item点击自身会触发 父类$layer绑定的这个click事件，
     // 事件是绑定在$layer上的，只绑定了一次,$layer类下面的所有.search-layer-item子类都可以触发，执行匿名函数里的东西（每次触发）
-    $layer.on('click', '.search-layer-item', function(){ //第二个参数.search-layer-item为谁要触发事件，代理谁
+    $layer.on('click', '.search-layer-item', function () { //第二个参数.search-layer-item为谁要触发事件，代理谁
         // 首先给input搜索框扔东西，将搜索出来的search-layer-item/$(this).html()扔到搜索框里$input.val()
         // $input.val($(this).html()); // 这里的this还是.search-layer-item（this指向第二个参数）
         $input.val(removeHtmlTags($(this).html())); //使用removeHtmlTags函数将标签去除
         // 提交表单，通过$input找到父类form，调用submit()
         // $input.parents('form').submit();
-        $form.submit(); 
+        $form.submit();
     });
 
+    // // 显示隐藏下拉层
+    // $input.on('focus', function(){
+    //     $layer.show(); // 在focus时下拉层显示
+    // }).on('blur', function(){ // .连缀调用
+    //     $layer.hide(); // 在blur时隐藏，1、点击下拉层失效，blur和click事件冲突，click事件松开才会触发
+    // });
+
+    // 显示隐藏下拉层
+    $input.on('focus', function(){
+        $layer.show(); // 在focus时下拉层显示
+    }).on('click', function(){ // 在绑定click事件，阻止冒泡
+        return false; //阻止冒泡(也阻止默认事件)，就不会触发document的click事件了
+    }); // 不用blur，用document的click
+
+    // 点击页面空白，下拉菜单消失
+    $(document).on('click', function(){
+        $layer.hide(); //由于冒泡，focus事件也会触发document的click事件，
+    });
+
+
     // 利用正则表达式将搜索出来，含有html标签(</b>等)去除掉
-    function removeHtmlTags(str){  // 传字符串进来
+    function removeHtmlTags(str) { // 传字符串进来
         // 使用正则表达式replace改变（替换）str内容，然后返回str
         // return str.replace(/<(?:[^>'"]|"[^"]*"|'[^']*')*>//g, ""); 
         // 第二个参数为替换新的内容进去（这里为空（清空找到的部分）），第一个参数为正则表达式（要匹配的内容（这里为html标签：如</b>等））
