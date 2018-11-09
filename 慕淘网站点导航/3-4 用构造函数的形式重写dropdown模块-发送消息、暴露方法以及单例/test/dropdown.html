@@ -190,6 +190,21 @@
         </ul>
     </div>
 
+    <div class="menu dropdown fl" data-active="menu" data-value="2">
+        <a href="javascript:;" class="dropdown-toggle">我的慕淘<i class="dropdown-arrow icon transition ">&#xe641;</i></a>
+        <ul class="dropdown-layer dropdown-left">
+            <li><a href="###" target="_blank" class="menu-item">已买到的宝贝</a></li>
+            <li><a href="###" target="_blank" class="menu-item">我的足迹</a></li>
+        </ul>
+    </div>
+    <div class="menu dropdown fl" data-active="menu" data-value="2">
+        <a href="javascript:;" class="dropdown-toggle">我的慕淘<i class="dropdown-arrow icon transition ">&#xe641;</i></a>
+        <ul class="dropdown-layer dropdown-left">
+            <li><a href="###" target="_blank" class="menu-item">已买到的宝贝</a></li>
+            <li><a href="###" target="_blank" class="menu-item">我的足迹</a></li>
+        </ul>
+    </div>
+
     <button id="btn-show">点我显示</button>
     <button id="btn-hide">点我隐藏</button>
 
@@ -200,7 +215,7 @@
     <script>
         // 接收 绑定事件
         $('.dropdown').on('dropdown-show dropdown-shown dropdown-hide dropdown-hidden', function (e) {
-            // console.log(e.type); // 消息正常接收
+            console.log(e.type); // 消息正常接收
         });
 
         // 调用封装好的 dropdown插件 
@@ -210,7 +225,7 @@
             // event:'click',
             css3: false,
             js: true,
-            // animation: 'slideUpDown'
+            animation: 'slideUpDown',
             // animation: 'fade'
             delay: 200 // 延迟200 毫秒显示
             // active: 'menu'

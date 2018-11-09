@@ -83,8 +83,8 @@
                 var $this = $(this),  // 变成 jQuery 对象
                     dropdown = $this.data('dropdown'), // 以后每次都从 dropdown 的data 里获取
                     options = $.extend({}, Dropdown.DEFAULTS, $this.data(), typeof option === 'object' && option ); //判断option是不是对象 如果不是对象则不会执行
-                // 如果不存在 则实例化
-                if(!dropdown) { // 实现单例 判断dropdown 是否存在 
+                // 如果不存在，dropdown为undefined，加上!dropdown（为true）， 则实例化
+                if(!dropdown) { // 实现单例 判断dropdown 是否存在   
                     $this.data('dropdown', dropdown = new Dropdown($this, options));
                 }
                 //实例化 保存成对象 使用单例 第一次实例化 保存下来 以后都使用保存下来的值
@@ -97,7 +97,7 @@
                 //     dropdown[option](); // 将option 当参数 传进来
                 // }
                 // 增加容错率 判断 是不是 函数 
-                if(typeof dropdown[option] === 'function') { // 如果option 是字符串 执行上面 show hide 方法
+                if(typeof dropdown[option] === 'function') { // 如果option 是字符串(传show参数进来) 执行上面 show hide 方法
                     dropdown[option](); // 将option 当参数 传进来
                 }
             });
