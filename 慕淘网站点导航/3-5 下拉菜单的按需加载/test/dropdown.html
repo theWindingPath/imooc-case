@@ -227,7 +227,7 @@
             var $this = $(this),
                 dataLoad = $this.data('load'); 
             
-            // 判断 如果 data-load 不存在 直接返回 不再执行
+            // 判断 如果 data-load 不存在（undefined） 直接返回 不再执行
             if(!dataLoad) return;
             
                 // $layer = $(this).find('.dropdown-layer'), // this 指向前面的 谁调用它 指向谁
