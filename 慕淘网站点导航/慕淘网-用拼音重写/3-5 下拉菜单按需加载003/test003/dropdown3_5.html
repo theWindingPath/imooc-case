@@ -189,16 +189,25 @@
             width: 60px;
             height: 30px;
         }
+
+        /* 动图 */
+        .dropdown-gif {
+            display: block;
+            height: 32px;
+            width: 32px;
+            background: url(../image/loading.gif) no-repeat;
+            margin: 20px;
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- font图标字体下拉箭头 -->
-    <!-- html上的 data-activeshuxing：1、不可以使用 _ , 2、会自动转换成全小写  -->
-    <div class="menu dropdown fl" data-active="menu" data-value003="003" data-activeshuxing="menu">
+    <!-- 增加一个data-load，指向json文件  -->
+    <div class="menu dropdown fl" data-active="menu" data-value003="003" data-activeshuxing="menu" data-load="dropdown3_5.json">
         <a href="###" class="dropdown-toggle">我的慕淘222222<i class="icon dropdown-arrow transition-xiala">&#xe609;</i></a>
         <ul class="dropdown-layer dropdown-left">
+            <li><a href="###" class="dropdown-gif"></a></li>
             <!-- <li><a href="###" target="_blank" class="menu-item">已购买的宝贝22</a></li>
             <li><a href="###" target="_blank" class="menu-item">我的足迹2222</a></li> -->
         </ul>
@@ -212,7 +221,6 @@
         </ul>
     </div>
 
-
     <button class="btn show-btn">显示</button>
     <button class="btn hide-btn">隐藏</button>
 
@@ -222,35 +230,161 @@
     <script src="../js/showhide-2.js"></script>
     <script src="../js/dropdown-2.js"></script>
     <script type="text/javascript">
-        // 在显示之前获取添加下拉层，从json数据里获取
-        // 发布订阅方式改写，触发dropdown-show时添加下拉层，在shown前
+        // // 第一步
+        // // 在显示之前获取添加下拉层，从json数据里获取
+        // // 发布订阅方式改写，触发dropdown-show时添加下拉层，在shown前
+        // $('.dropdown').on('dropdown-show', function (e) {
+        //     console.log(e.type);
+
+        //     var html_jiedian = ''; // 定义空字符串接收 
+        //     var $this = $(this); // 保存this 为jQuery对象
+        //     // 通过this寻找它下面的下拉层
+        //     var xialacheng_bianliang = $this.find('.dropdown-layer');
+
+        //     // 获取json数据 $.getJSON(路径, 回调函数)
+        //     $.getJSON('dropdown3_5.json', function (data) { // data为从 dropdown3_5.json 里获得的内容，放到data里
+        //         // 将获得的数据 放到dom节点上 
+        //         // 变量data，用获得的数据创建新 下拉层节点
+        //         for (var i = 0; i < data.length; i++) {
+        //             html_jiedian += '<li><a href=" ' + data[i].url +
+        //                 ' " target="_blank" class="menu-item"> ' + data[i].name_neirong + ' </a></li>';
+        //             // 将创建的HTML放到下拉层里
+        //             xialacheng_bianliang.html(html_jiedian);
+        //         }
+        //     })
+        // });
+
+        // // 第二步：延迟显示，和添加gif图片
+        // $('.dropdown').on('dropdown-show', function (e) {
+        //     console.log(e.type);
+
+        //     var html_jiedian = ''; // 定义空字符串接收 
+        //     var $this = $(this); // 保存this 为jQuery对象
+        //     var xialacheng_bianliang = $this.find('.dropdown-layer'); // 通过this寻找它下面的下拉层
+
+        //     // 获取json数据 $.getJSON(路径, 回调函数)
+        //     $.getJSON('dropdown3_5.json', function (data) { // data为从 dropdown3_5.json 里获得的内容，放到data里
+        //         // // 将获得的数据 放到dom节点上 
+        //         // // 变量data，用获得的数据创建新 下拉层节点
+        //         // for (var i = 0; i < data.length; i++) {
+        //         //     html_jiedian += '<li><a href=" ' + data[i].url +
+        //         //         ' " target="_blank" class="menu-item"> ' + data[i].name_neirong + ' </a></li>';
+        //         //     // 将创建的HTML放到下拉层里
+        //         //     xialacheng_bianliang.html(html_jiedian);
+        //         // }
+
+        //         // 延迟1秒显示
+        //         setTimeout(function () {
+        //             for (var i = 0; i < data.length; i++) {
+        //                 html_jiedian += '<li><a href=" ' + data[i].url +
+        //                     ' " target="_blank" class="menu-item"> ' + data[i].name_neirong +
+        //                     ' </a></li>';
+        //                 // 将创建的HTML放到下拉层里
+        //                 xialacheng_bianliang.html(html_jiedian);
+        //             }
+        //         }, 1000);
+        //     });
+        // });
+
+        // // 第三步：将dropdown.json 放到HTML上，从data里获取
+        // $('.dropdown').on('dropdown-show', function (e) {
+        //     console.log(e.type);
+        //     var html_jiedian = ''; // 定义空字符串接收 
+        //     var $this = $(this); // 保存this 为jQuery对象
+        //     var xialacheng_bianliang = $this.find('.dropdown-layer'); // 通过this寻找它下面的下拉层
+
+        //     var dataload = $this.data('load'); // 获取data上的 .json
+
+        //     // // 获取json数据 $.getJSON(路径, 回调函数)
+        //     // $.getJSON('dropdown3_5.json', function (data) { // data为从 dropdown3_5.json 里获得的内容，放到data里
+        //     //     // 延迟1秒显示
+        //     //     setTimeout(function () {
+        //     //         for (var i = 0; i < data.length; i++) {
+        //     //             html_jiedian += '<li><a href=" ' + data[i].url +
+        //     //                 ' " target="_blank" class="menu-item"> ' + data[i].name_neirong +
+        //     //                 ' </a></li>';
+        //     //             // 将创建的HTML放到下拉层里
+        //     //             xialacheng_bianliang.html(html_jiedian);
+        //     //         }
+        //     //     }, 1000);
+        //     // });
+
+        //     // 判断 如果当前节点没有 data-load属性 直接返回
+        //     if(!dataload) return;
+
+        //     $.getJSON(dataload, function (data) { // data为从 dropdown3_5.json 里获得的内容，放到data里
+        //         console.log(1)
+        //         // 延迟1秒显示
+        //         setTimeout(function () {
+        //             for (var i = 0; i < data.length; i++) {
+        //                 html_jiedian += '<li><a href=" ' + data[i].url +
+        //                     ' " target="_blank" class="menu-item"> ' + data[i].name_neirong +
+        //                     ' </a></li>';
+        //                 // 将创建的HTML放到下拉层里
+        //                 xialacheng_bianliang.html(html_jiedian);
+        //             }
+        //         }, 1000);
+        //     });
+        // });
+
+        // 第四步：使用单例，
         $('.dropdown').on('dropdown-show', function (e) {
             console.log(e.type);
-
             var html_jiedian = ''; // 定义空字符串接收 
             var $this = $(this); // 保存this 为jQuery对象
-            // 通过this寻找它下面的下拉层
-            var xialacheng_bianliang = $this.find('.dropdown-layer');
+            var xialacheng_bianliang = $this.find('.dropdown-layer'); // 通过this寻找它下面的下拉层
+            var dataload = $this.data('load'); // 获取data上的 .json
 
-            // 获取json数据 $.getJSON(路径, 回调函数)
-            $.getJSON('dropdown3_5.json', function (data) { // data为从 dropdown3_5.json 里获得的内容，放到data里
-                // 将获得的数据 放到dom节点上 
-                // 变量data，用获得的数据创建新 下拉层节点
-                for (var i = 0; i < data.length; i++) {
-                    html_jiedian += '<li><a href=" ' + data[i].url +
-                        ' " target="_blank" class="menu-item"> ' + data[i].name_neirong + ' </a></li>';
-                    // 将创建的HTML放到下拉层里
-                    xialacheng_bianliang.html(html_jiedian);
-                }
-            })
+            // 判断 如果当前节点没有 data-load属性 直接返回
+            if (!dataload) return;
+
+            // data增加一个新属性，判断true或false，单例模式，是否已经加载
+
+            // 获取loaded_danli，第一次为undefined，
+            var dataload_danli = $this.data('loaded_danli');
+
+            // 如果dataload_danli 为undefined，则是第一次进来，
+            if (!dataload_danli) {
+                $.getJSON(dataload, function (data) { // data为从 dropdown3_5.json 里获得的内容，放到data里
+                    console.log(1) // 使用单例后，这里只打印一次，
+                    // 延迟1秒显示
+                    setTimeout(function () {
+                        for (var i = 0; i < data.length; i++) {
+                            html_jiedian += '<li><a href=" ' + data[i].url +
+                                ' " target="_blank" class="menu-item"> ' + data[i].name_neirong +
+                                ' </a></li>';
+                            // 将创建的HTML放到下拉层里
+                            xialacheng_bianliang.html(html_jiedian);
+
+                            $this.data('loaded_danli', true); // 已加载，为true
+                        }
+                    }, 1000);
+                });
+            }
+
+            // $.getJSON(dataload, function (data) { // data为从 dropdown3_5.json 里获得的内容，放到data里
+            //     console.log(1)
+            //     // 延迟1秒显示
+            //     setTimeout(function () {
+            //         for (var i = 0; i < data.length; i++) {
+            //             html_jiedian += '<li><a href=" ' + data[i].url +
+            //                 ' " target="_blank" class="menu-item"> ' + data[i].name_neirong +
+            //                 ' </a></li>';
+            //             // 将创建的HTML放到下拉层里
+            //             xialacheng_bianliang.html(html_jiedian);
+            //         }
+            //     }, 1000);
+            // });
+
         });
+
 
         // 在这里传想要的效果的对象参数
         $('.dropdown').xiala_chajian({
             css3_shuxing: true,
             js_shuxing: false,
             // animation_shuxing: 'slideUpDown_fangfa', // 使用默认的fade 上下卷动因为没有事先定义高度，获取高度会为0，显示不出来的原因
-            delay_shuxing: 200 // 延迟200毫秒显示
+            delay_shuxing: 0 // 延迟200毫秒显示
         });
 
         // // 在这里绑定接收 dropdown-show 消息的事件

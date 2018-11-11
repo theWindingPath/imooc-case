@@ -85,10 +85,19 @@
     'use strict';
 
     // Search是一个构造函数，也是一个对象，有两个参数，
-    function Search(elem, options) { //1、第一个参数，为了复用，传递不同的elem，2、options为用户传的参数
+    function Search($elem, options) { //1、第一个参数，为了复用，传递不同的elem，2、options为用户传的参数
         // 一进来，将两个参数转为jQuery对象，并保存到this上
-        this.$elem = $(elem);
+        this.$elem = $elem;
         this.$options = $(options);
+
+        // 获取变量
+        this.$input = this.$elem.find('.search-inputbox');
+        this.$form = this.$elem.find('.search-form'); //获取form表单
+        // this.$btn = this.$elem.find('.search-btn'); // 不用btn
+        this.$layer = this.$elem.find('.search-layer');
+
+        // 用事件代理绑定事件，
+        this.$elem.on('click', '.search-btn', $.proxy(this.submit, this));
     }
 
     // 如果用户没有传，则使用默认参数
@@ -104,51 +113,49 @@
 
     // Search作为一个对象，有两大功能submit/autocomplete
     Search.prototype.submit = function () {
-
+        if ($.trim(this.$input.val()) === '') { 
+            return false;
+        }
+        // 验证完，手动提交表单
+        this.$form.submit();
     };
     Search.prototype.autocomplete = function () {
 
     };
     // autocomplete自动完成还可以细分出小功能getData(获取数据) /showLayer(显示下拉层) /hideLayer(隐藏下拉层)
     Search.prototype.getData = function () { // autocomplete小功能
- 
+
     };
     Search.prototype.showLayer = function () { // autocomplete小功能
- 
+
     };
     Search.prototype.hideLayer = function () { // autocomplete小功能
- 
-    };
 
+    };
 
     // Search是局部的，要和外面通信，需要把Search变成jQuery插件
     $.fn.extend({
-        search: function(option) {
-            return this.each(function() {
-                
-                var $this=$(this),
-                search=$this.data('search'),
-                options = $.extend({}, Search.DEFAULTS, $(this).data(), typeof option==='object'&&option);
+        search: function (option) {
+            return this.each(function () {
+                var $this = $(this),
+                    search = $this.data('search'),
+                    options = $.extend({}, Search.DEFAULTS, $(this).data(), typeof option === 'object' && option);
                 // dropdown(this, options);  
-                if(!search){//解决多次调用dropdown问题
-                    $this.data('search',search=new Search($this,options));
-
-                }  
-
-                if(typeof search[option]==='function'){
-                    search[option]();
-
+                if (!search) { //解决多次调用dropdown问题
+                    $this.data('search', search = new Search($this, options));
                 }
 
+                if (typeof search[option] === 'function') {
+                    search[option]();
+                }
             });
-
         }
     });
 
     // $.fn.extend({
     //     dropdown: function(option) {
     //         return this.each(function() {
-                
+
     //             var $this=$(this),
     //             dropdown=$this.data('dropdown'),
     //             options = $.extend({}, Dropdown.DEFAULTS, $(this).data(), typeof option==='object'&&option);
