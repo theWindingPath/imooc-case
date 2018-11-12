@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2-10 将显示隐藏封装成模块（初步）</title>
+    <link rel="stylesheet" href="../css/base.css" />
+    <style>
+        body {
+            width: 400px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            width: 50%;
+            height: 30px;
+        }
+
+        #box {
+            /* display: none; */
+            width: 100%;
+            height: 200px;
+            background-color: orangered;
+            overflow: hidden;
+        }
+
+        .transition {
+            -o-transition: all 0.5s;
+            -ms-transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -webkit-transition: all 0.5s;
+            transition: all 0.5s;
+        }
+
+        /* 淡入淡出  */
+        .fade-danrudanchu {
+            opacity: 0 !important;
+            visibility: hidden !important;
+        }
+
+        /* 上下隐藏 通过添加这个类实现 */
+        .slide_shangxia {
+            height: 0 !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+
+        /* 左右滚动  */
+        .slide_zuoyou {
+            width: 0 !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="btn-show" class="btn">显示333</button><button id="btn-hide" class="btn">隐藏333</button>
+    <div id="box" class="">
+        <p>12</p>
+        <p>12</p>
+        <p>12</p>
+        <p>12</p>
+        <p>12</p>
+    </div>
+    <button class="btn">显示333</button>
+
+    <script src="../js/jquery.js"></script>
+    <script src="../js/transition.js"></script>
+    <script src="../js/showhide-2.js"></script>
+    <script>
+        var $hezi_bianliang = $('#box'); // 获取box节点 
+
+        // 使用jQuery对象直接调用jQuery插件
+        $hezi_bianliang.xianshi_yincang_chajian({ // 传对象进来 先初始化使用哪种效果
+            css3_shuxing: true, // 默认不使用css3  这是对象里的属性
+            js_shuxing: false,
+            animation_shuxing: 'slideUpDown_fangfa' // 默认淡出淡出 第一个方法
+        });
+
+        $('#btn-show').on('click', function () { // 给btn-show添加点击事件
+            // 使用jQuery对象直接调用jQuery插件
+            $hezi_bianliang.xianshi_yincang_chajian('xianshi_fangfa');
+        });
+
+        $('#btn-hide').on('click', function () { // 隐藏
+            // 使用jQuery对象直接调用jQuery插件
+            $hezi_bianliang.xianshi_yincang_chajian('yincang_fangfa');
+        });
+
+        $hezi_bianliang.on('show shown hide hidden003', function (e) {
+            console.log(e.type); // 打印触发事件的类似 show hide
+        });
+    </script>
+
+</body>
+
+</html>

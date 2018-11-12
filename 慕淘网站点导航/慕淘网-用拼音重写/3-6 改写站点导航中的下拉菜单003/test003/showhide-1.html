@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2-2 静静的显示和隐藏（2）</title>
+    <link rel="stylesheet" href="../css/base.css" />
+    <style>
+        body {
+            width: 400px;
+            margin: 0 auto;
+        }
+
+        .btn {
+            width: 50%;
+            height: 30px;
+        }
+
+        #box {
+            width: 100%;
+            height: 200px;
+            background-color: orangered;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="btn-show" class="btn">显示333</button><button id="btn-hide" class="btn">隐藏333</button>
+    <div id="box"></div>
+
+    <script src="../js/jquery.js"></script>
+    <script>
+        // 普通显示隐藏
+        var silent_duixiang = { // 定义对象
+
+            // // 方法二：使用回调函数解决输出内容的灵活
+            // // $canshu参数, 要隐藏和显示的元素，showCallback 显示前输出的内容函数 shownCallback 显示后输出的内容函数
+            // xianshi_hanshu: function ($canshu, xianshiqian_callback, xianshihou_callback) { // 对象里的方法
+
+            //     // 判断传进来的 xianshiqian_callback 是否是函数 是则执行它
+            //     if (typeof xianshiqian_callback === 'function') xianshiqian_callback();
+            //     // $canshu.html('<p>我要显示了333</p>');
+            //     $canshu.show(); // 调用jQuery函数
+            //     // 显示后调用
+            //     if (typeof xianshihou_callback === 'function') xianshihou_callback();
+
+            //     // // 延迟1秒显示后面文字
+            //     // setTimeout(function () {
+            //     //     $canshu.html($canshu.html() + '<p>我已经显示了333333</p>');
+            //     // }, 1000)
+            // },
+            // yincang_hanshu: function ($canshu) {
+            //     $canshu.hide();
+            // }
+
+
+            // 方法三：使用trigger 发布订阅方式，适合多人协作 
+            // on绑定 show shown hide hidden 事件 trigger() 来触发 相当于click事件 需要点击触发
+            xianshi_hanshu: function ($canshu) { // 对象里的方法
+                $canshu.trigger('show'); // 触发show事件
+                $canshu.show();
+                $canshu.trigger('shown');
+            },
+            yincang_hanshu: function ($canshu) {
+                $canshu.trigger('hide'); // 触发hide事件
+                $canshu.hide();
+                $canshu.trigger('hidden003'); // 事件名可以自定义 
+            }
+        };
+
+        // 带效果的显示和隐藏，css3实现方法
+        var css3_duixiang = {
+            fade_fangfa: { // 淡入淡出
+                xianshi_hanshu: function () {
+
+                },
+                yincang_hanshu: function () {
+
+                }
+            },
+            slideUpDown_fangfa: { // 上下滚动
+                xianshi_hanshu: function () {
+
+                },
+                yincang_hanshu: function () {
+
+                }
+            },
+            slideLeftRight_fangfa: { // 左右滚动
+                xianshi_hanshu: function () {
+
+                },
+                yincang_hanshu: function () {
+
+                }
+            },
+            fadeslideUpDown_fangfa: { // 淡入淡出上下滚动
+                xianshi_hanshu: function () {
+
+                },
+                yincang_hanshu: function () {
+
+                }
+            },
+            fadeslideLeftRight_fangfa: { // 淡入淡出左右滚动
+                xianshi_hanshu: function () {
+
+                },
+                yincang_hanshu: function () {
+
+                }
+            }
+        };
+
+        // 带效果的显示和隐藏，js实现方法
+        var js_duixiang = {
+            fade_fangfa: { // 淡入淡出
+                xianshi_hanshu: function () {
+
+                },
+                yincang_hanshu: function () {
+
+                }
+            },
+            slideUpDown_fangfa: { // 上下滚动
+                xianshi_hanshu: function () {
+
+                },
+                yincang_hanshu: function () {
+
+                }
+            },
+            slideLeftRight_fangfa: { // 左右滚动
+                xianshi_hanshu: function () {
+
+                },
+                yincang_hanshu: function () {
+
+                }
+            },
+            fadeslideUpDown_fangfa: { // 淡入淡出上下滚动
+                xianshi_hanshu: function () {
+
+                },
+                yincang_hanshu: function () {
+
+                }
+            },
+            fadeslideLeftRight_fangfa: { // 淡入淡出左右滚动
+                xianshi_hanshu: function () {
+
+                },
+                yincang_hanshu: function () {
+
+                }
+            }
+        };
+
+
+        // // 方法二调用
+        // var $hezi_bianliang = $('#box'); // 获取box节点 
+        // $('#btn-show').on('click', function () { // 给btn-show添加点击事件
+        //     // 使用回调函数后 需要传三个参数进来 一个 $elem、两个函数,可以是匿名函数 用逗号分隔
+        //     silent_duixiang.xianshi_hanshu($hezi_bianliang, function () { // 调用 对象里的方法
+        //         $hezi_bianliang.html('<p>我要显示了333</p>');
+        //     }, function () {
+        //         // 延迟1秒显示后面文字
+        //         setTimeout(function () {
+        //             $hezi_bianliang.html($hezi_bianliang.html() + '<p>我已经显示了333333</p>');
+        //         }, 1000)
+        //     });
+        // });
+
+        // $('#btn-hide').on('click', function () { // 隐藏
+        //     silent_duixiang.yincang_hanshu($hezi_bianliang); // 调用 对象里的方法
+        // });
+
+
+        // 方法三调用
+        var $hezi_bianliang = $('#box'); // 获取box节点 
+        $('#btn-show').on('click', function () { // 给btn-show添加点击事件
+            silent_duixiang.xianshi_hanshu($hezi_bianliang);
+        });
+
+        $('#btn-hide').on('click', function () { // 隐藏
+            silent_duixiang.yincang_hanshu($hezi_bianliang); // 调用 对象里的方法
+        });
+
+        // on绑定 show hide 事件
+        $hezi_bianliang.on('show shown hide hidden003', function (e) {
+            console.log(e.type); // 打印触发事件的类似 show hide
+        })
+
+        // // 小A接收show、shown事件 也绑定show、shown事件 做不一样的事情 
+        // $hezi_bianliang.on('show shown hide hidden003', function (e) {
+        //     // console.log(e.type); // 打印触发事件的类似 show hide
+        //     // 判断是show 还是shown
+        //     if (e.type === 'show') { // 是show 
+        //         $hezi_bianliang.html('<p>我要显示了333</p>'); //是show 执行
+        //     } else if (e.type === 'shown') { // 是shown
+        //         // 延迟1秒显示后面文字
+        //         setTimeout(function () {
+        //             $hezi_bianliang.html($hezi_bianliang.html() + '<p>我已经显示了333333</p>');
+        //         }, 1000)
+        //     };
+        // })
+
+        // 小C接收show 事件 做不一样的事情 改变盒子的背景颜色
+        $hezi_bianliang.on('show shown', function (e) {
+            // console.log(e.type); // 打印触发事件的类似 show hide
+            // 判断是show 还是shown
+            if (e.type === 'show') { // 是show 
+                $hezi_bianliang.css('background','black'); // 修改盒子css样式 改变背景颜色
+            } else if (e.type === 'shown') { // 是shown
+                // 延迟1秒显示后面文字
+                setTimeout(function () { 
+                    $hezi_bianliang.css('background','darkred');  // 1秒后shown变深红色
+                    // $hezi_bianliang.html($hezi_bianliang.html() + '<p>我已经显示了333333</p>');
+                }, 1000)
+            };
+        })
+    </script>
+
+
+</body>
+
+</html>
