@@ -1,36 +1,35 @@
-/*公共样式*/
-
+/* 公共样式 */
 .container {
-    /*站点导航*/
     width: 1200px;
     margin: 0 auto;
 }
 
 a.link {
-    /*链接正常颜色*/
     color: #4d555d;
 }
 
 a.link:hover {
-    /*链接经过颜色*/
     color: #f01414 !important;
 }
 
+
+/* 下拉菜单样式dropdown 分离共性 */
 .dropdown {
     position: relative;
 }
 
 .dropdown-toggle {
+    display: block;
+    /* 添加  position: relative;解决 那条横线显示问题，z-index要和position一起使用才起效果*/
     position: relative;
     z-index: 2;
 }
 
 .dropdown-arrow {
     display: inline-block;
+    /* background-repeat: no-repeat; */
     line-height: 1;
-    /*background-repeat: no-repeat;*/
     vertical-align: middle;
-
 }
 
 .dropdown-layer {
@@ -49,36 +48,27 @@ a.link:hover {
     left: auto;
 }
 
-.dropdown-loading {
-    width: 32px;
+/* 动图 */
+.dropdown-gif {
+    display: block;
     height: 32px;
-    background: url(../img/loading.gif) no-repeat;
+    width: 32px;
+    background: url(../image/loading.gif) no-repeat;
     margin: 20px;
 }
 
-.text-hidden {
-    text-indent: -99px;
-    /*将文字隐藏 */
-    overflow: hidden;
-}
-.text-ellipsis {
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-/*icon*/
+/* 图标字体下拉箭头 */
 @font-face {
     font-family: "iconfont";
-    src: url('../test/font/iconfont.eot?t=1477124206');
+    src: url('../test003/font/iconfont.eot?t=1477124206');
     /* IE9*/
-    src: url('../test/font/iconfont.eot?t=1477124206#iefix') format('embedded-opentype'),
+    src: url('../test003/font/iconfont.eot?t=1477124206#iefix') format('embedded-opentype'),
         /* IE6-IE8 */
-        url('../test/font/iconfont.woff?t=1477124206') format('woff'),
+        url('../test003/font/iconfont.woff?t=1477124206') format('woff'),
         /* chrome, firefox */
-        url('../test/font/iconfont.ttf?t=1477124206') format('truetype'),
+        url('../test003/font/iconfont.ttf?t=1477124206') format('truetype'),
         /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-        url('../test/font/iconfont.svg?t=1477124206#iconfont') format('svg');
+        url('../test003/font/iconfont.svg?t=1477124206#iconfont') format('svg');
     /* iOS 4.1- */
 }
 
@@ -91,7 +81,8 @@ a.link:hover {
     -moz-osx-font-smoothing: grayscale;
 }
 
-[class*="-active"] .dropdown-arrow {
+/* 多菜单旋转 使用 [class*= '-active'] 选择所有包含 -active 的类 */
+[class*='-active'] .dropdown-arrow {
     -o-transform: rotate(180deg);
     -ms-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
@@ -99,6 +90,16 @@ a.link:hover {
     transform: rotate(180deg);
 }
 
+/* transition all 0.5s 过度效果  */
+.transition-xiala {
+    -o-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+/* 需要添加showhide 模块使用的css样式 fade slide等 */
 .transition {
     -o-transition: all 0.5s;
     -ms-transition: all 0.5s;
@@ -107,53 +108,54 @@ a.link:hover {
     transition: all 0.5s;
 }
 
-
-/*showhide*/
-
-.fadeOut {
-    visibility: hidden !important;
+/* 淡入淡出  */
+.fade-danrudanchu {
     opacity: 0 !important;
+    visibility: hidden !important;
 }
 
-.slideUpDownCollapse {
+/* 上下隐藏 通过添加这个类实现 */
+.slide_shangxia {
     height: 0 !important;
     padding-top: 0 !important;
     padding-bottom: 0 !important;
 }
 
-.slideLeftRightCollapse {
+/* 左右滚动  */
+.slide_zuoyou {
     width: 0 !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
 }
 
-
-
-
-
-/*.menu .dropdown*/
-
+/* menu dropdown 分离特性 */
 .menu .dropdown-toggle {
     display: block;
     height: 100%;
+    /* padding: 0 16px 0 12px; */
     padding: 0 13px 0 12px;
     border-left: 1px solid #f3f5f7;
     border-right: 1px solid #f3f5f7;
 }
 
 .menu .dropdown-arrow {
-    /*width: 8px;
+    /* width: 8px;
     height: 6px;
-    background-image: url(../img/dropdown-arrow.png);*/
+    background-image: url(../image/dropdown-arrow.png); */
+    /* margin-left: 8px; */
     margin-left: 5px;
 }
 
 .menu .dropdown-layer {
+    /* top: 100%; */
     top: 43px;
     background-color: #fff;
     border: 1px solid #cdd0d4;
+    /* 上下卷动效果需要加  overflow: hidden; */
+    /* overflow: hidden; */
 }
 
+/* 这部分的menu 可以拿走 */
 .menu-item {
     display: block;
     height: 30px;
@@ -161,6 +163,7 @@ a.link:hover {
     padding: 0 12px;
     color: #4d555d;
     white-space: nowrap;
+    /* 没有换行 */
 }
 
 .menu-item:hover {
@@ -172,58 +175,8 @@ a.link:hover {
     border-color: #cdd0d4;
 }
 
-.menu-active .dropdown-arrow {
-    /*background-image: url(../img/dropdown-arrow-active.png);*/
-}
-
-/*.menu-active .dropdown-layer {
-    display: block;
-}*/
-
-
-/* search搜索框 */
-.search {
-    position: relative;
-    border: 1px solid #cfd2d5;
-}
-.search-inputbox {
-    width: 585px;
-    height: 40px;
-    line-height: 40px;
-    padding: 0 10px;
-    background-color: #fff;
-    border: none;
-}
-.search-btn {
-    width: 73px;
-    height: 40px;
-    line-height: 40px;
-    background-color: #07111b;
-    border: none;
-    font-size: 14px;
-    color: #fff;
-    text-align: center;
-    cursor: pointer;
-}
-.search-layer {
-    /* display: none; */
-    position: absolute;
-    top: 100%;
-    left: -1px;
-    width: 100%;
-    background-color: #fff;
-    border: 1px solid #cfd2d5;
-}
-.search-layer-item {
-    height: 24px;
-    line-height: 24px;
-    padding: 0 10px;
-    cursor: pointer;
-    /* 超出隐藏...
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden; */
-}
-.search-layer-item:hover {
-    background-color: #f3f5f7;
+.text-hidden {
+    /* 将文字隐藏，提取出来，放到common */
+    text-indent: -99px;
+    overflow: hidden;
 }
