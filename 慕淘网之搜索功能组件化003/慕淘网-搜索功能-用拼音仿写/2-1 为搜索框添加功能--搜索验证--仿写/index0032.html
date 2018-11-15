@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2-1 为搜索框添加功能--搜索验证--仿写</title>
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/index.css" />
+</head>
+
+<body>
+    <!-- 站点导航开始 -->
+    <div class="nav-site">
+        <div class="container">
+            <ul class="fl">
+                <li class="fl"><a href="javascript:;" id="nav-site-signin" class="nav-site-login">亲，请登录003</a></li>
+                <li class="fl"><a href="javascript:;" id="nav-site-signup" class="nav-site-signup link">免费注册003</a></li>
+                <li class="fl"><a href="###" target="_blank" class="nav-site-mobile link">手机逛慕淘003</a></li>
+            </ul>
+            <ul class="fr">
+                <li class="menu dropdown fl" data-active="menu" data-activeshuxing="menu">
+                    <a href="###" target="_blank" class="dropdown-toggle link transition transition-xiala">我的慕淘<i class="dropdown-arrow icon transition">&#xe609;</i></a>
+                    <ul class="dropdown-layer dropdown-left">
+                        <li><a href="###" target="_blank" class="menu-item">已购买的宝贝</a></li>
+                        <li><a href="###" target="_blank" class="menu-item">我的足迹</a></li>
+                    </ul>
+                </li>
+                <li class="menu dropdown fl" data-activeshuxing="menu">
+                    <a href="###" target="_blank" class="dropdown-toggle link transition">收藏夹<i class="dropdown-arrow icon">&#xe609;</i></a>
+                    <ul class="dropdown-layer dropdown-left">
+                        <li><a href="###" target="_blank" class="menu-item">收藏的宝贝</a></li>
+                        <li><a href="###" target="_blank" class="menu-item">收藏的店铺</a></li>
+                    </ul>
+                </li>
+                <li class="fl">
+                    <a href="###" target="_blank" class="nav-site-category link">商品分类</a>
+                </li>
+                <li class="menu dropdown fl" data-activeshuxing="menu" data-load="js/dropdown3_6.json">
+                    <a href="###" target="_blank" class="dropdown-toggle link transition">卖家中心<i class="dropdown-arrow icon">&#xe609;</i></a>
+                    <ul class="dropdown-layer dropdown-left">
+                        <li class="dropdown-gif"></li>
+                        <!-- <li><a href="###" target="_blank" class="menu-item">免费开店</a></li>
+                        <li><a href="###" target="_blank" class="menu-item">已卖出的宝贝</a></li>
+                        <li><a href="###" target="_blank" class="menu-item">出售中的宝贝</a></li>
+                        <li><a href="###" target="_blank" class="menu-item">卖家服务市场</a></li>
+                        <li><a href="###" target="_blank" class="menu-item">卖家培训中心</a></li>
+                        <li><a href="###" target="_blank" class="menu-item">体验中心</a></li> -->
+                    </ul>
+                </li>
+                <li class="menu nav-site-service dropdown fl" data-activeshuxing="menu">
+                    <a href="###" target="_blank" class="dropdown-toggle link transition">联系客服<i class="dropdown-arrow icon">&#xe609;</i></a>
+                    <ul class="dropdown-layer dropdown-right">
+                        <li><a href="###" target="_blank" class="menu-item">消费者客服</a></li>
+                        <li><a href="###" target="_blank" class="menu-item">卖家客服</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- 站点导航结束 -->
+
+    <!-- header区开始 -->
+    <div class="header">
+        <div class="container">
+            <h1 class="fl"><a href="./index0032.html" class="header-logo text-hidden">慕课网</a></h1>
+            <div class="search fl">
+                <form action="https://s.taobao.com/search">
+                    <input type="text" name="q" placeholder="美食100元抢" autocomplete="off" class="search-inputbox fl" />
+                    <input type="submit" value="搜索" class="search-btn fl" />
+                </form>
+                <ul class="search-layer">
+                    <li class="search-layer-item text-ellipsis" title="111003aaaaaasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssaaaaaaaaaccccccccccccccccccccccccccccccddddddddddddddddddddddddddddffffffffffffffffffffffffffffffffvvvvvvvvvvvvvvvvvvvvvvvvvvv">111003aaaaaasssssssssssssssssssssssssssssssssssssssssssssssssssssssssssaaaaaaaaaccccccccccccccccccccccccccccccddddddddddddddddddddddddddddffffffffffffffffffffffffffffffffvvvvvvvvvvvvvvvvvvvvvvvvvvv</li>
+                    <li class="search-layer-item">111003</li>
+                    <li class="search-layer-item">111003</li>
+                </ul>
+            </div>
+            <div class="cart fr"></div>
+        </div>
+    </div>
+
+
+    <!-- 判断jQuery 是否正确引入-->
+    <script>
+        window.jQuery || document.write('<script src="js/jquery.js"><\/script>');
+    </script>
+    <!-- 引入dropdown.js和showhide.js文件 -->
+    <script src="js/transition.js"></script>
+    <script src="js/showhide-2.js"></script>
+    <script src="js/dropdown-2.js"></script>
+    <script src="js/search.js"></script>
+    <script src="js/index.js"></script>
+</body>
+
+</html>
